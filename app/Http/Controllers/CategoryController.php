@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class CategoryController extends Controller
+{
+    public function index()
+    {
+        if(\Illuminate\Support\Facades\Request::is('api/*'))
+            return Category::all();
+        return view('Category.index', [
+            'Categorys' => Category::paginate(5)
+        ]);
+    }
+
+    public function create()
+    {
+        return view('Category.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required|unique:categorys|max:70'
+        ], [
+            'category_name.required' => 'Название категории, является обязательным полем',
+            'category_name.unique' => 'Категория с таким названием уже существует',
+            'category_name.max' => 'Название категории не может быть больше 70 символов'
+        ]);
+        $Category = new Category;
+        $Category->category_name = $request->input('category_name');
+        $Category->save();
+        return redirect('/categorys');
+    }
+
+    public function show($id)
+    {
+        return view('Category.show', [
+            'Model' => Category::findorfail($id)
+        ]);
+    }
+
+    public function edit($id)
+    {
+        return view('Category.edit',[
+            'Model' => Category::findorfail($id)
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $Model = Category::findorfail($id);
+        $request->validate([
+            'category_name' => 'required|max:70'
+        ], [
+            'category_name.required' => 'Название категории, является обязательным полем',
+            'category_name.max' => 'Название категории не может быть больше 70 символов'
+        ]);
+        $Model->category_name = $request->input('category_name');
+        $Model->save();
+        return redirect('/categorys');
+    }
+
+    public function destroy($id)
+    {
+        Category::destroy($id);
+        if(\Illuminate\Support\Facades\Request::is('api/*'))
+            return response(null, \Illuminate\Http\Response::HTTP_OK);
+        return redirect('/categorys');
+    }
+}
