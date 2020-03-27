@@ -13,9 +13,9 @@ class ApiController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'firstname' => ['required', 'string', 'max:40'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
+            'firstname' => 'required|string|max:40',
+            'email' => 'required|email:rfc,dns|max:255|unique:users',
+            'password' => 'required|string|min:8'
         ],[
             'firstname.required' => 'Имя пользователя обязательно для заполнения',
             'email.required' =>  'Email обязателен для заполнения',
@@ -50,8 +50,8 @@ class ApiController extends Controller
     public function token(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8']
+            'email' => 'required|string|email:rfc,dns|max:255',
+            'password' => 'required|string|min:8'
         ], [
             'email.required' =>  'Email обязателен для заполнения',
             'email.email' => 'Необходимо ввести валидный Email адрес',
