@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $table = 'categorys';
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function products(){
         return $this->hasMany('App\Models\Product');

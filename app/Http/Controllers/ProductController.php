@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index()
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
-            return Product::all();
+            return Product::with('category')->with('place')->get();
         return view('Product.index', [
             'Products' => Product::paginate(5)
         ]);
