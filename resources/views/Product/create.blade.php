@@ -3,6 +3,15 @@
 @section('title', 'Добавление нового продукта')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="panel panel-white">
         <div class="panel-body">
             <form enctype="multipart/form-data" action="/products/create" method="POST">
@@ -31,7 +40,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="price">Категория:</label>
+                    <label for="category_id">Категория:</label>
                     <select class="form-control" name="category_id" id="category_id">
                         @foreach(App\Models\Category::all() as $Category)
                             <option value="{{ $Category->id }}">{{ $Category->category_name }}</option>
@@ -43,8 +52,8 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="price">Столовая:</label>
-                    <select class="form-control" name="category_id" id="category_id">
+                    <label for="place_id">Столовая:</label>
+                    <select class="form-control" name="place_id" id="place_id">
                         @foreach(App\Models\Place::all() as $Place)
                             <option value="{{ $Place->id }}">{{ $Place->place_name }}</option>
                         @endforeach

@@ -33,9 +33,7 @@ class CategoryController extends Controller
             'category_name.unique' => 'Категория с таким названием уже существует',
             'category_name.max' => 'Название категории не может быть больше 70 символов'
         ]);
-        $Category = new Category;
-        $Category->category_name = $request->input('category_name');
-        $Category->save();
+        $Category = Category::create($request->all());
         return redirect('/categorys');
     }
 

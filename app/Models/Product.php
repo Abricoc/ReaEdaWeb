@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed name_product
  * @property mixed price
  * @property mixed text
+ * @property mixed category_id
+ * @property mixed place_id
+ * @property mixed photo
  */
 class Product extends Model
 {

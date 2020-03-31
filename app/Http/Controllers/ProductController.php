@@ -26,8 +26,8 @@ class ProductController extends Controller
             'price' => 'required',
             'text' => 'required',
             'photo' => 'required|mimes:jpeg,jpg,png,gif',
-            'category_id ' => 'required',
-            'place_id ' => 'required'
+            'category_id' => 'required',
+            'place_id' => 'required'
         ],[
             'name_product.required' => 'Наименование продукта является обязательным полем',
             'name_product.max' => 'В наименовании продукта должно быть не больше 30 символов',
@@ -38,6 +38,16 @@ class ProductController extends Controller
         $product->name_product = $request->input('name_product');
         $product->price = $request->input('price');
         $product->text = $request->input('text');
+        $product->category_id = $request->input('category_id');
+        $product->place_id = $request->input('place_id');
+        $product->photo = '/storage/' . $request->file('photo')->store('products', 'public');
+        $product->save();
         return redirect('/products');
     }
+
+    public function destroy($id){
+        Product::destroy($id);
+        return redirect('/products');
+    }
+
 }

@@ -7,13 +7,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property int|mixed role
+ * @property mixed firstname
+ * @property mixed|string password
+ * @property mixed email
+ */
 class User extends Authenticatable
 {
     use Notifiable;
     use HasApiTokens;
 
     protected $fillable = [
-        'lastname', 'firstname', 'email', 'password', 'role'
+        'firstname', 'email', 'password', 'role'
     ];
 
     protected $hidden = [
