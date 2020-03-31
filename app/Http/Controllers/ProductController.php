@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index()
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
-            return Product::with('category')->with('place')->get();
+            return Product::with(['category', 'place'])->get();
         return view('Product.index', [
             'Products' => Product::paginate(5)
         ]);
@@ -25,7 +25,7 @@ class ProductController extends Controller
             'name_product' => 'required|max:30',
             'price' => 'required',
             'text' => 'required',
-            'photo' => 'mimes:jpeg,jpg,png,gif',
+            'photo' => 'required|mimes:jpeg,jpg,png,gif',
             'category_id ' => 'required',
             'place_id ' => 'required'
         ],[
@@ -34,7 +34,10 @@ class ProductController extends Controller
             'price.required' => 'Цена является обязательным полем',
             'text.required' => 'Описание является обязательным полем'
         ]);
-
+        $product = new Product;
+        $product->name_product = $request->input('name_product');
+        $product->price = $request->input('price');
+        $product->text = $request->input('text');
         return redirect('/products');
     }
 }

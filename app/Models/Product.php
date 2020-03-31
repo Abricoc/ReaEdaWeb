@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed name_product
+ * @property mixed price
+ * @property mixed text
+ */
 class Product extends Model
 {
     protected $table = 'products';

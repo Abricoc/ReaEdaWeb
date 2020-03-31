@@ -41,6 +41,8 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        if(\Illuminate\Support\Facades\Request::is('api/*'))
+            return Category::findorfail($id);
         return view('Category.show', [
             'Model' => Category::findorfail($id)
         ]);
@@ -70,8 +72,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        if(\Illuminate\Support\Facades\Request::is('api/*'))
-            return response(null, \Illuminate\Http\Response::HTTP_OK);
         return redirect('/categorys');
     }
 }

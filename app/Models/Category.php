@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed category_name
+ * @method static findorfail($id)
+ */
 class Category extends Model
 {
     protected $table = 'categorys';

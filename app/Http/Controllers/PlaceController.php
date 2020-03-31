@@ -83,8 +83,6 @@ class PlaceController extends Controller
     public function destroy($id)
     {
         Place::destroy($id);
-        if(\Illuminate\Support\Facades\Request::is('api/*'))
-            return response(null, \Illuminate\Http\Response::HTTP_OK);
         return redirect('/places');
     }
 }
