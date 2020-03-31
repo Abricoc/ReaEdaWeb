@@ -45,6 +45,8 @@ class PlaceController extends Controller
 
     public function show($id)
     {
+        if(\Illuminate\Support\Facades\Request::is('api/*'))
+            return Place::findorfail($id);
         return view('Place.show', [
             'Model' => Place::findorfail($id)
         ]);
