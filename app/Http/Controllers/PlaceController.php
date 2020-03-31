@@ -35,10 +35,9 @@ class PlaceController extends Controller
             'place_photo.mimes' => 'Фотография должна иметь следующее расширение: jpeg, jpg, png, gif.',
             'place_photo.required' => 'Обязательно наличие фотографии'
         ]);
-        $path = $request->file('place_photo')->store('places', 'public');
         $place = new Place;
         $place->place_name = $request->input('place_name');
-        $place->place_photo = $path;
+        $place->place_photo = '/storage/' . $request->file('place_photo')->store('places', 'public');
         $place->save();
         return redirect('/places');
     }
