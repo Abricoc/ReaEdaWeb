@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="place_photo">Фотография:</label></div>
-                <img width="500px" src="{{ asset('storage/'. $Model->place_photo) }}" alt="{{ $Model->place_name }}">
+                <img width="500px" src="{{ $Model->place_photo }}" alt="{{ $Model->place_name }}">
             </div>
         </div>
         <a href="/places" class="btn btn-primary m-b-sm">Назад</a>

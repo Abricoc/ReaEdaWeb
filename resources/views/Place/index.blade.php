@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $Place->id }}</td>
                             <td>{{ $Place->place_name }}</td>
-                            <td><img height="70px" src="{{ asset('storage/'. $Place->place_photo) }}" alt="{{ $Place->place_name }}"></td>
+                            <td><img height="70px" src="{{ $Place->place_photo }}" alt="{{ $Place->place_name }}"></td>
                             <td>
                                 <form method="post" action="/places/{{ $Place->id }}">
                                     <a title="Посмотреть" href="/places/{{ $Place->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>

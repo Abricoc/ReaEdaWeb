@@ -47,8 +47,4 @@
             </form>
         </div>
     </div>
-    <script src="/js/ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'text' );
-    </script>
 @endsection

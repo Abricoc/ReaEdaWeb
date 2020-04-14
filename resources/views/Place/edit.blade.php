@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="place_photo">Фотография:</label>
                     <input id="place_photo" accept="image/*" class="form-control" type="file" name="place_photo">
-                    <img width="500px" src="{{ asset('storage/'. $Model->place_photo) }}" alt="{{ $Model->place_name }}">
+                    <img width="500px" src="{{ $Model->place_photo }}" alt="{{ $Model->place_name }}">
                 </div>
                 @error('place_photo')
                 <div class="alert alert-danger">{{ $message }}</div>
