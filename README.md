@@ -103,9 +103,10 @@
     }
 ]
 ```
-Получение всех "Продуктов"
+Получение всех "Продуктов" конкретной столовой
 --- 
-##### Адрес: `/api/products` 
+##### Адрес: `/api/products/{placeId}`
+##### Параметры: placeId - ID столовой
 ##### Метод: `GET` 
 ``` 
 [
@@ -142,4 +143,71 @@
         }
     }
 ]
+```
+Получение всех "Продуктов" конкретной столовой и конкретной категории
+--- 
+##### Адрес: `/api/products/{placeId}/{categoryId}`
+##### Параметры: 
+- placeId - ID столовой 
+- categoryId - ID категории
+##### Метод: `GET` 
+``` 
+[
+    {
+        "id": 3,
+        "name_product": "Мясо по-французски",
+        "price": "170",
+        "text": "<p><strong>Мясо по-французски</strong></p>",
+        "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+        "category": {
+            "id": 1,
+            "category_name": "Мясные блюда"
+        },
+        "place": {
+            "id": 2,
+            "place_name": "Нахимовский проспект, 21",
+            "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
+        }
+    },
+    {
+        "id": 4,
+        "name_product": "Мясо по-французки",
+        "price": "170",
+        "text": "<p>Мясо по-французки</p>",
+        "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+        "category": {
+            "id": 1,
+            "category_name": "Мясные блюда"
+        },
+        "place": {
+            "id": 2,
+            "place_name": "Нахимовский проспект, 21",
+            "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
+        }
+    }
+]
+```
+Получение конкретного "Продукта"
+--- 
+##### Адрес: `/api/singleProduct/{id}`
+##### Параметры: 
+- id - ID продукта
+##### Метод: `GET` 
+``` 
+{
+    "id": 3,
+    "name_product": "Мясо по-французски",
+    "price": "170",
+    "text": "<p><strong>Мясо по-французски</strong></p>",
+    "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+    "category": {
+        "id": 1,
+        "category_name": "Мясные блюда"
+    },
+    "place": {
+        "id": 2,
+        "place_name": "Нахимовский проспект, 21",
+        "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
+    }
+}
 ```
