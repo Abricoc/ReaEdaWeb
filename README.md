@@ -247,7 +247,8 @@
         }
     ],
     "TotalNumber": 3,
-    "FinalAmount": 510
+    "FinalAmount": 510,
+    "CurrentCount": 0
 }
 ```
 Добавление товара в "Корзину"
@@ -288,7 +289,8 @@
         }
     ],
     "TotalNumber": 3,
-    "FinalAmount": 510
+    "FinalAmount": 510,
+    "CurrentCount": 2
 }
 ```
 
@@ -330,6 +332,7 @@
         }
     ],
     "TotalNumber": 3,
-    "FinalAmount": 510
+    "FinalAmount": 510,
+    "CurrentCount": 2
 }
 ```

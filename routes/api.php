@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
+    $currentCount = 0;
     if($request->has('count')){
         $count = (int)$request->input('count');
     }
@@ -44,6 +45,7 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
             $cart[$i]['count'] += $count;
             if($cart[$i]['count'] > 20) $cart[$i]['count'] = 20;
             $cart[$i]['price'] = $product->price * $cart[$i]['count'];
+            $currentCount = $cart[$i]['count'];
             $check = false;
         }
         $countAllItems += $cart[$i]['count'];
@@ -57,13 +59,15 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
         ];
         $countAllItems += $count;
         $FinalAmount += $product->price * $count;
+        $currentCount = $cart[$i]['count'];
     }
     $request->user()->cart = $cart;
     $request->user()->save();
     return response([
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
-        'FinalAmount' => $FinalAmount
+        'FinalAmount' => $FinalAmount,
+        'CurrentCount' => $currentCount
     ], 200);
 });
 
@@ -72,6 +76,7 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
+    $currentCount = 0;
     if($request->has('count')){
         $count = (int)$request->input('count');
     }
@@ -83,6 +88,7 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
             $cart[$i]['count'] -= $count;
             if($cart[$i]['count'] < 0) $cart[$i]['count'] = 0;
             $cart[$i]['price'] = $product->price * $cart[$i]['count'];
+            $currentCount = $cart[$i]['count'];
         }
         if($cart[$i]['count'] != 0){
             $newCart[] = $cart[$i];
@@ -96,7 +102,8 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
     return response([
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
-        'FinalAmount' => $FinalAmount
+        'FinalAmount' => $FinalAmount,
+        'CurrentCount' => $currentCount
     ], 200);
 });
 
@@ -112,6 +119,7 @@ Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
     return response([
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
-        'FinalAmount' => $FinalAmount
+        'FinalAmount' => $FinalAmount,
+        'CurrentCount' => 0
     ], 200);
 });
