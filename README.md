@@ -219,32 +219,36 @@
 - Authorization: Bearer {token}
 ##### Метод: `GET` 
 ``` 
-[
-    {
-        "product": {
-            "id": 3,
-            "name_product": "Мясо по-французски",
-            "price": "170",
-            "text": "<p><strong>Мясо по-французски</strong></p>",
-            "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
-            "day_of_the_wish": 0
+{
+    "Items": [
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 2,
+            "price": 340
         },
-        "count": 2,
-        "price": 340
-    },
-    {
-        "product": {
-            "id": 4,
-            "name_product": "Мясо по-французки",
-            "price": "170",
-            "text": "<p>Мясо по-французки</p>",
-            "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
-            "day_of_the_wish": 0
-        },
-        "count": 1,
-        "price": 170
-    }
-]
+        {
+            "product": {
+                "id": 4,
+                "name_product": "Мясо по-французки",
+                "price": "170",
+                "text": "<p>Мясо по-французки</p>",
+                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 1,
+            "price": 170
+        }
+    ],
+    "TotalNumber": 3,
+    "FinalAmount": 510
+}
 ```
 Добавление товара в "Корзину"
 --- 
@@ -256,7 +260,36 @@
 - count - количество такого товара (необязательный по умолчанию равен 1)
 ##### Метод: `POST` 
 ``` 
-5
+{
+    "Items": [
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 2,
+            "price": 340
+        },
+        {
+            "product": {
+                "id": 4,
+                "name_product": "Мясо по-французки",
+                "price": "170",
+                "text": "<p>Мясо по-французки</p>",
+                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 1,
+            "price": 170
+        }
+    ],
+    "TotalNumber": 3,
+    "FinalAmount": 510
+}
 ```
 
 Удаление товара из "Корзины"
@@ -269,5 +302,34 @@
 - count - количество такого товара (необязательный по умолчанию равен 1)
 ##### Метод: `DELETE` 
 ``` 
-3
+{
+    "Items": [
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 2,
+            "price": 340
+        },
+        {
+            "product": {
+                "id": 4,
+                "name_product": "Мясо по-французки",
+                "price": "170",
+                "text": "<p>Мясо по-французки</p>",
+                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+                "day_of_the_wish": 0
+            },
+            "count": 1,
+            "price": 170
+        }
+    ],
+    "TotalNumber": 3,
+    "FinalAmount": 510
+}
 ```

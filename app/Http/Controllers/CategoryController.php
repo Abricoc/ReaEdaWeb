@@ -15,7 +15,7 @@ class CategoryController extends Controller
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Category::all();
         return view('Category.index', [
-            'Categorys' => Category::paginate(5)
+            'Categorys' => Category::all()
         ]);
     }
 

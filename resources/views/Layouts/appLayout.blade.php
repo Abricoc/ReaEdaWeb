@@ -106,6 +106,7 @@
 <script src="/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/plugins/datatables/js/jquery.datatables.min.js"></script>
 <script src="/js/space.min.js"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
     $product = \App\Models\Product::findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
+    $FinalAmount = 0;
     if($request->has('count')){
         $count = (int)$request->input('count');
     }
@@ -46,24 +47,31 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
             $check = false;
         }
         $countAllItems += $cart[$i]['count'];
+        $FinalAmount += $cart[$i]['price'];
     }
     if($check){
         $cart[] = [
             'product' => $product->toArray(),
             'count'=> $count,
-            'price' => $product->price * 1
+            'price' => $product->price * $count
         ];
         $countAllItems += $count;
+        $FinalAmount += $product->price * $count;
     }
     $request->user()->cart = $cart;
     $request->user()->save();
-    return response($countAllItems, 200);
+    return response([
+        'Items' => $cart,
+        'TotalNumber' => $countAllItems,
+        'FinalAmount' => $FinalAmount
+    ], 200);
 });
 
 Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
     $product = \App\Models\Product::findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
+    $FinalAmount = 0;
     if($request->has('count')){
         $count = (int)$request->input('count');
     }
@@ -79,14 +87,31 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
         if($cart[$i]['count'] != 0){
             $newCart[] = $cart[$i];
             $countAllItems += $cart[$i]['count'];
+            $FinalAmount += $cart[$i]['price'];
         }
     }
     $request->user()->cart = $newCart;
     $request->user()->save();
 
-    return response($countAllItems, 200);
+    return response([
+        'Items' => $cart,
+        'TotalNumber' => $countAllItems,
+        'FinalAmount' => $FinalAmount
+    ], 200);
 });
 
 Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
-    return $request->user()->cart;
+    $cart = $request->user()->cart;
+    $countAllItems = 0;
+    $FinalAmount = 0;
+    for ($i = 0; $i < count($cart); $i++)
+    {
+        $countAllItems += $cart[$i]['count'];
+        $FinalAmount += $cart[$i]['price'];
+    }
+    return response([
+        'Items' => $cart,
+        'TotalNumber' => $countAllItems,
+        'FinalAmount' => $FinalAmount
+    ], 200);
 });

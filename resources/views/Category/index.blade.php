@@ -8,7 +8,6 @@
         <div class="panel-body">
             <a href="{{ route('CreateCategory') }}" class="btn btn-success m-b-sm">Добавить новую категорию товаров</a>
             <div class="table-responsive">
-                @if(count($Categorys))
                 <table id="example3" class="display table" style="width: 100%; cellspacing: 0;">
                     <thead>
                     <tr>
@@ -35,11 +34,28 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $Categorys->links() }}
-                @else
-                <h4>Нет категорий</h4>
-                @endif
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function (){
+            $('#example3').DataTable({
+                "pagingType": "numbers",
+                'language': {
+                    "lengthMenu": "Выводить _MENU_ записей на страницу",
+                    "zeroRecords": "Ничего не найдено, извините",
+                    "info": "Показано страниц _PAGE_ из _PAGES_",
+                    "infoEmpty": "Нет данных",
+                    "infoFiltered": "(фильтр по _MAX_ кол-ву записей)",
+                    "search": "Поиск: ",
+                    "paginate": {
+                        "first":      "Первая",
+                        "last":       "Последняя",
+                        "next":       "Следующая",
+                        "previous":   "Предыдущая"
+                    },
+                }
+            });
+        }
+    </script>
 @endsection
