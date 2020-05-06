@@ -27,6 +27,11 @@ Route::middleware('api')->get('/products/{placeId}/{categoryId}', function($plac
 
 Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
     $product = \App\Models\Product::findorfail($request->input('productId'));
+    $count = 1;
+    $countAllItems = 0;
+    if($request->has('count')){
+        $count = (int)$request->input('count');
+    }
     $cart = $request->user()->cart;
     if (is_null($cart)) {
         $cart = [];
@@ -35,42 +40,51 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
     for ($i = 0; $i < count($cart); $i++)
     {
         if ($product->id == $cart[$i]['product']['id']){
-            $cart[$i]['count']++;
+            $cart[$i]['count'] += $count;
+            if($cart[$i]['count'] > 20) $cart[$i]['count'] = 20;
             $cart[$i]['price'] = $product->price * $cart[$i]['count'];
             $check = false;
         }
+        $countAllItems += $cart[$i]['count'];
     }
     if($check){
         $cart[] = [
             'product' => $product->toArray(),
-            'count'=> 1,
+            'count'=> $count,
             'price' => $product->price * 1
         ];
+        $countAllItems += $count;
     }
     $request->user()->cart = $cart;
     $request->user()->save();
-
-    return response('ok');
+    return response($countAllItems, 200);
 });
 
 Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
     $product = \App\Models\Product::findorfail($request->input('productId'));
+    $count = 1;
+    $countAllItems = 0;
+    if($request->has('count')){
+        $count = (int)$request->input('count');
+    }
     $cart = $request->user()->cart;
     $newCart = [];
     for ($i = 0; $i < count($cart); $i++)
     {
         if ($product->id == $cart[$i]['product']['id']){
-            $cart[$i]['count']--;
+            $cart[$i]['count'] -= $count;
+            if($cart[$i]['count'] < 0) $cart[$i]['count'] = 0;
             $cart[$i]['price'] = $product->price * $cart[$i]['count'];
         }
         if($cart[$i]['count'] != 0){
             $newCart[] = $cart[$i];
+            $countAllItems += $cart[$i]['count'];
         }
     }
     $request->user()->cart = $newCart;
     $request->user()->save();
 
-    return response('ok');
+    return response($countAllItems, 200);
 });
 
 Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
