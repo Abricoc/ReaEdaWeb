@@ -26,7 +26,7 @@ Route::middleware('api')->get('/products/{placeId}/{categoryId}', function($plac
 });
 
 Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
-    $product = \App\Models\Product::findorfail($request->input('productId'));
+    $product = \App\Models\Product::with(['place', 'category'])->findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
@@ -72,7 +72,7 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
 });
 
 Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
-    $product = \App\Models\Product::findorfail($request->input('productId'));
+    $product = \App\Models\Product::with(['place', 'category'])->findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
@@ -96,7 +96,10 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
             $FinalAmount += $cart[$i]['price'];
         }
     }
-    $request->user()->cart = $newCart;
+    if(count($newCart) == 0)
+        $request->user()->cart = null;
+    else
+        $request->user()->cart = $newCart;
     $request->user()->save();
 
     return response([
@@ -120,6 +123,17 @@ Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
+        'CurrentCount' => 0
+    ], 200);
+});
+
+Route::middleware('auth:sanctum')->post('/clearCart', function(Request $request){
+    $request->user()->cart = null;
+    $request->user()->save();
+    return response([
+        'Items' => $request->user()->cart,
+        'TotalNumber' => 0,
+        'FinalAmount' => 0,
         'CurrentCount' => 0
     ], 200);
 });
