@@ -160,4 +160,5 @@ Route::post('/resetPassword', function (Request $request){
    $newPassword = \Illuminate\Support\Str::random(8);
    $user->password = bcrypt($newPassword);
    $user->save();
+    \Illuminate\Support\Facades\Mail::to('n.s.mitasov@mpt.ru')->send(new \App\Mail\ResetPasswords($newPassword));
 });
