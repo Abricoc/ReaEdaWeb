@@ -351,6 +351,7 @@
     "Items": null,
     "TotalNumber": 0,
     "FinalAmount": 0,
-    "CurrentCount": 0
+    "CurrentCount": 0,
+    "Place": ''
 }
 ```

@@ -142,7 +142,8 @@ Route::middleware('auth:sanctum')->post('/clearCart', function(Request $request)
         'Items' => $request->user()->cart,
         'TotalNumber' => 0,
         'FinalAmount' => 0,
-        'CurrentCount' => 0
+        'CurrentCount' => 0,
+        'Place'=> ''
     ], 200);
 });
 
