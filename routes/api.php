@@ -40,6 +40,11 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
     if (is_null($cart)) {
         $cart = [];
     }
+    if(count($cart) > 0){
+        if($product->place->id != \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id){
+            $cart = [];
+        }
+    }
     $check = true;
     for ($i = 0; $i < count($cart); $i++)
     {
@@ -104,7 +109,10 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
     else
         $request->user()->cart = $newCart;
     $request->user()->save();
-
+    $place = 0;
+    if(count($newCart) > 0){
+        $place = \App\Models\Product::findorfail($newCart[0]['product']['id'])->place->id;
+    }
     return response([
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
