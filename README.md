@@ -223,24 +223,24 @@
     "Items": [
         {
             "product": {
-                "id": 3,
-                "name_product": "Мясо по-французски",
+                "id": 4,
+                "name_product": "Мясо по-французки",
                 "price": "170",
-                "text": "<p><strong>Мясо по-французски</strong></p>",
-                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
-                "day_of_the_wish": 0
+                "text": "<p>Мясо по-французки</p>",
+                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+                "dish_of_the_day": 0
             },
             "count": 2,
             "price": 340
         },
         {
             "product": {
-                "id": 4,
-                "name_product": "Мясо по-французки",
+                "id": 3,
+                "name_product": "Мясо по-французски",
                 "price": "170",
-                "text": "<p>Мясо по-французки</p>",
-                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
-                "day_of_the_wish": 0
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "dish_of_the_day": 0
             },
             "count": 1,
             "price": 170
@@ -248,7 +248,8 @@
     ],
     "TotalNumber": 3,
     "FinalAmount": 510,
-    "CurrentCount": 0
+    "CurrentCount": 1,
+    "Place": "Нахимовский проспект, 21"
 }
 ```
 Добавление товара в "Корзину"
@@ -270,24 +271,28 @@
                 "price": "170",
                 "text": "<p>Мясо по-французки</p>",
                 "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
-                "dish_of_the_day": 0,
-                "place": {
-                    "id": 2,
-                    "place_name": "Нахимовский проспект, 21",
-                    "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
-                },
-                "category": {
-                    "id": 1,
-                    "category_name": "Мясные блюда"
-                }
+                "dish_of_the_day": 0
+            },
+            "count": 2,
+            "price": 340
+        },
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "dish_of_the_day": 0
             },
             "count": 1,
             "price": 170
         }
     ],
-    "TotalNumber": 1,
-    "FinalAmount": 170,
-    "CurrentCount": 1
+    "TotalNumber": 3,
+    "FinalAmount": 510,
+    "CurrentCount": 1,
+    "Place": "Нахимовский проспект, 21"
 }
 ```
 
@@ -310,24 +315,28 @@
                 "price": "170",
                 "text": "<p>Мясо по-французки</p>",
                 "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
-                "dish_of_the_day": 0,
-                "place": {
-                    "id": 2,
-                    "place_name": "Нахимовский проспект, 21",
-                    "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
-                },
-                "category": {
-                    "id": 1,
-                    "category_name": "Мясные блюда"
-                }
+                "dish_of_the_day": 0
+            },
+            "count": 2,
+            "price": 340
+        },
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "dish_of_the_day": 0
             },
             "count": 1,
             "price": 170
         }
     ],
-    "TotalNumber": 1,
-    "FinalAmount": 170,
-    "CurrentCount": 1
+    "TotalNumber": 3,
+    "FinalAmount": 510,
+    "CurrentCount": 1,
+    "Place": "Нахимовский проспект, 21"
 }
 ```
 

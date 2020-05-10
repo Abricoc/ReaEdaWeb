@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+
 Route::middleware('api')->post('/register', 'Auth\ApiController@register');
 Route::middleware('api')->post('/login', 'Auth\ApiController@token');
 Route::middleware('auth:sanctum')->get('/logout', 'Auth\ApiController@logout');
@@ -26,7 +28,7 @@ Route::middleware('api')->get('/products/{placeId}/{categoryId}', function($plac
 });
 
 Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
-    $product = \App\Models\Product::with(['place', 'category'])->findorfail($request->input('productId'));
+    $product = \App\Models\Product::findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
@@ -67,12 +69,13 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
-        'CurrentCount' => $currentCount
+        'CurrentCount' => $currentCount,
+        'Place' => $product->place->place_name
     ], 200);
 });
 
 Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
-    $product = \App\Models\Product::with(['place', 'category'])->findorfail($request->input('productId'));
+    $product = \App\Models\Product::findorfail($request->input('productId'));
     $count = 1;
     $countAllItems = 0;
     $FinalAmount = 0;
@@ -106,12 +109,16 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
-        'CurrentCount' => $currentCount
+        'CurrentCount' => $currentCount,
+        'Place' => $product->place->place_name
     ], 200);
 });
 
 Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
     $cart = $request->user()->cart;
+    $place = '';
+    if(count($cart) > 0)
+        $place = \App\Models\Product::findorfail($cart[0]['product']['id'])->place->place_name;
     $countAllItems = 0;
     $FinalAmount = 0;
     for ($i = 0; $i < count($cart); $i++)
@@ -123,7 +130,8 @@ Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
         'Items' => $cart,
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
-        'CurrentCount' => 0
+        'CurrentCount' => 0,
+        'Place' => $place
     ], 200);
 });
 
@@ -136,4 +144,11 @@ Route::middleware('auth:sanctum')->post('/clearCart', function(Request $request)
         'FinalAmount' => 0,
         'CurrentCount' => 0
     ], 200);
+});
+
+Route::post('/resetPassword', function (Request $request){
+   $user =  User::where('email', $request->input('email'))->get();
+   $newPassword = \Illuminate\Support\Str::random(8);
+   $user->password = bcrypt($newPassword);
+   $user->save();
 });
