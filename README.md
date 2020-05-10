@@ -249,7 +249,7 @@
     "TotalNumber": 3,
     "FinalAmount": 510,
     "CurrentCount": 1,
-    "Place": "Нахимовский проспект, 21"
+    "Place": 1
 }
 ```
 Добавление товара в "Корзину"
@@ -292,7 +292,7 @@
     "TotalNumber": 3,
     "FinalAmount": 510,
     "CurrentCount": 1,
-    "Place": "Нахимовский проспект, 21"
+    "Place": 1
 }
 ```
 
@@ -336,7 +336,7 @@
     "TotalNumber": 3,
     "FinalAmount": 510,
     "CurrentCount": 1,
-    "Place": "Нахимовский проспект, 21"
+    "Place": 1
 }
 ```
 
@@ -352,6 +352,6 @@
     "TotalNumber": 0,
     "FinalAmount": 0,
     "CurrentCount": 0,
-    "Place": ''
+    "Place": 0
 }
 ```

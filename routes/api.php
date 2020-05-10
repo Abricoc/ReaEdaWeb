@@ -70,7 +70,7 @@ Route::middleware('auth:sanctum')->post('/cart', function(Request $request){
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
         'CurrentCount' => $currentCount,
-        'Place' => $product->place->place_name
+        'Place' => \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id
     ], 200);
 });
 
@@ -110,15 +110,15 @@ Route::middleware('auth:sanctum')->delete('/cart', function(Request $request){
         'TotalNumber' => $countAllItems,
         'FinalAmount' => $FinalAmount,
         'CurrentCount' => $currentCount,
-        'Place' => $product->place->place_name
+        'Place' => $product->place->id
     ], 200);
 });
 
 Route::middleware('auth:sanctum')->get('/cart', function(Request $request){
     $cart = $request->user()->cart;
-    $place = '';
+    $place = 0;
     if(count($cart) > 0)
-        $place = \App\Models\Product::findorfail($cart[0]['product']['id'])->place->place_name;
+        $place = \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id;
     $countAllItems = 0;
     $FinalAmount = 0;
     for ($i = 0; $i < count($cart); $i++)
@@ -143,7 +143,7 @@ Route::middleware('auth:sanctum')->post('/clearCart', function(Request $request)
         'TotalNumber' => 0,
         'FinalAmount' => 0,
         'CurrentCount' => 0,
-        'Place'=> ''
+        'Place'=> 0
     ], 200);
 });
 
