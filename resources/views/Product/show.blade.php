@@ -38,10 +38,13 @@
                     <label for="place_id">Столовая:</label>
                     <input type="text" class="form-control" value="{{ $Model->place->place_name }}" name="category_id" id="category_id" readonly>
                 </div>
-
                 <div class="form-group">
-                    <label for="photo">Фотография:</label>
-                    <img src="{{ $Model->photo }}" alt="{{ $Model->product_name }}">
+                    <label>Блюдо дня:</label>
+                    <input onclick="return false;" type="checkbox" @if($Model->dish_of_the_day == 1) checked  @endif">
+                </div>
+                <div class="form-group">
+                    <label for="photo">Фотография:</label><br>
+                    <img width="500px" src="{{ $Model->photo }}" alt="{{ $Model->product_name }}">
                 </div>
                 <a href="/products" class="btn btn-primary m-b-sm">Назад</a>
             </form>

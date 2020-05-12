@@ -29,11 +29,6 @@
                             <i class="menu-icon icon-download"></i><span>Заказы</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/">
-                            <i class="menu-icon icon-user"></i><span>Пользователи</span>
-                        </a>
-                    </li>
                     <li style="margin-left: 50px; font-size: 1.2em;">Справочники</li>
                         <li class="{{ Request::is('places*') ? 'active-page' : '' }}">
                             <a href="/places" class="active-page">
@@ -69,7 +64,6 @@
                             <li class="dropdown user-dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/avatar.png" alt="" class="img-circle"></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Профиль</a></li>
                                     <li>
                                         <form id="logoutForm" method="post" action="/logout">
                                             @csrf

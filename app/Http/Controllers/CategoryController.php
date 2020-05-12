@@ -57,10 +57,11 @@ class CategoryController extends Controller
     {
         $Model = Category::findorfail($id);
         $request->validate([
-            'category_name' => 'required|max:70'
+            'category_name' => 'required|unique:categorys,category_name,' . $id . '|max:70'
         ], [
             'category_name.required' => 'Название категории, является обязательным полем',
-            'category_name.max' => 'Название категории не может быть больше 70 символов'
+            'category_name.max' => 'Название категории не может быть больше 70 символов',
+            'category_name.unique' => 'Категория с таким названием уже существует',
         ]);
         $Model->category_name = $request->input('category_name');
         $Model->save();

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ResetPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
@@ -96,4 +99,11 @@ class ApiController extends Controller
         ], 200);
     }
 
+    public function ResetPassword(Request $request){
+        $user =  User::where('email', $request->input('email'))->get();
+        $newPassword = Str::random(8);
+        $user->password = bcrypt($newPassword);
+        $user->save();
+        Mail::to($request->input('email'))->send(new ResetPasswords($newPassword));
+    }
 }

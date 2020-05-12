@@ -27,7 +27,7 @@ class ProductController extends Controller
             'text' => 'required',
             'photo' => 'required|mimes:jpeg,jpg,png,gif',
             'category_id' => 'required',
-            'place_id' => 'required'
+            'place_id' => 'required',
         ],[
             'name_product.required' => 'Наименование продукта является обязательным полем',
             'name_product.max' => 'В наименовании продукта должно быть не больше 30 символов',
@@ -40,6 +40,10 @@ class ProductController extends Controller
         $product->text = $request->input('text');
         $product->category_id = $request->input('category_id');
         $product->place_id = $request->input('place_id');
+        if($request->input('day_check') == 'on')
+            $product->dish_of_the_day = true;
+        else
+            $product->dish_of_the_day = false;
         $product->photo = '/storage/' . $request->file('photo')->store('products', 'public');
         $product->save();
         return redirect('/products');
@@ -77,6 +81,10 @@ class ProductController extends Controller
         $product->text = $request->input('text');
         $product->category_id = $request->input('category_id');
         $product->place_id = $request->input('place_id');
+        if($request->input('day_check') == 'on')
+            $product->dish_of_the_day = true;
+        else
+            $product->dish_of_the_day = false;
         if($request->hasFile('photo'))
             $product->photo = '/storage/' . $request->file('photo')->store('products', 'public');
         $product->save();

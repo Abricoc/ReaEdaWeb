@@ -18,6 +18,7 @@
                         <th>Цена</th>
                         <th>Категория</th>
                         <th>Столовая</th>
+                        <th>Блюдо дня</th>
                         <th>Действия</th>
                     </tr>
                     </thead>
@@ -30,6 +31,7 @@
                             <td>{{ $Product->price }}</td>
                             <td>{{ $Product->category->category_name }}</td>
                             <td>{{ $Product->place->place_name }}</td>
+                            <td><input onclick="return false;" type="checkbox" @if($Product->dish_of_the_day == 1) checked  @endif"></td>
                             <td>
                                 <form method="post" action="/products/{{ $Product->id }}">
                                     <a title="Посмотреть" href="/products/{{ $Product->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>

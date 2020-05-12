@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::redirect('/', '/login');
+
 Route::middleware('auth')->group(function(){
     //Place routing
     Route::get('/places', 'PlaceController@index')->name('Places');

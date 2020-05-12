@@ -38,7 +38,7 @@
         </div>
     </div>
     <script>
-        window.onload = function (){
+        /*window.onload = function (){
             $('#example3').DataTable({
                 "pagingType": "numbers",
                 'language': {
@@ -56,6 +56,6 @@
                     },
                 }
             });
-        }
+        }*/
     </script>
 @endsection
