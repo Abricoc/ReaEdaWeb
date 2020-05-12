@@ -105,5 +105,27 @@ class ApiController extends Controller
         $user->password = bcrypt($newPassword);
         $user->save();
         Mail::to($request->input('email'))->send(new ResetPasswords($newPassword));
+        return response(null, 200);
+    }
+
+    public function ChangeName(Request $request){
+        $user = $request->user();
+        $user->firstname = $request->input('name');
+        $user->save();
+        return response(null, 200);
+    }
+
+    public function ChangePassword(Request $request){
+        $user = $request->user();
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+        return response(null, 200);
+    }
+
+    public function ChangeEmail(Request $request){
+        $user = $request->user();
+        $user->email = $request->input('email');
+        $user->save();
+        return response(null, 200);
     }
 }

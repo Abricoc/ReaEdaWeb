@@ -21,4 +21,7 @@ Route::middleware('auth:sanctum')->post('/cart', 'CartController@AddProductToCar
 Route::middleware('auth:sanctum')->delete('/cart', 'CartController@DeleteProductFromCart');
 Route::middleware('auth:sanctum')->get('/cart', 'CartController@GetCart');
 Route::middleware('auth:sanctum')->post('/clearCart', 'CartController@ClearCart');
-Route::post('/resetPassword', 'Auth\ApiController@ResetPassword');
+Route::middleware('auth:sanctum')->post('/resetPassword', 'Auth\ApiController@ResetPassword');
+Route::middleware('auth:sanctum')->post('/changeName', 'Auth\ApiController@ChangeName');
+Route::middleware('auth:sanctum')->post('/changePassword', 'Auth\ApiController@ChangePassword');
+Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
