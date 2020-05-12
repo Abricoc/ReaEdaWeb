@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+
+
 Route::middleware('api')->post('/register', 'Auth\ApiController@register');
 Route::middleware('api')->post('/login', 'Auth\ApiController@token');
 Route::middleware('auth:sanctum')->get('/logout', 'Auth\ApiController@logout');
@@ -21,7 +23,9 @@ Route::middleware('auth:sanctum')->post('/cart', 'CartController@AddProductToCar
 Route::middleware('auth:sanctum')->delete('/cart', 'CartController@DeleteProductFromCart');
 Route::middleware('auth:sanctum')->get('/cart', 'CartController@GetCart');
 Route::middleware('auth:sanctum')->post('/clearCart', 'CartController@ClearCart');
-Route::middleware('auth:sanctum')->post('/resetPassword', 'Auth\ApiController@ResetPassword');
+Route::post('/resetPassword', 'Auth\ApiController@ResetPassword');
 Route::middleware('auth:sanctum')->post('/changeName', 'Auth\ApiController@ChangeName');
 Route::middleware('auth:sanctum')->post('/changePassword', 'Auth\ApiController@ChangePassword');
 Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
+Route::middleware('auth:sanctum')->post('/checkout', 'OrdersController@CheckOut');
+Route::middleware('auth:sanctum')->get('/profile', 'Auth\ApiController@Profile');

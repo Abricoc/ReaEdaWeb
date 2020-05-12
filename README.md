@@ -365,3 +365,73 @@
 ``` 
 
 ```
+
+Изменение имени
+--- 
+##### Адрес: `/api/changeName`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Параметры: 
+- firstname - Имя пользователя
+##### Метод: `POST` 
+``` 
+{ 
+    "data": "", 
+    "errors": { 
+        "firstname": "", 
+        "email": "", 
+        "password": "" 
+    } 
+}
+```
+
+Изменение электронной почты
+--- 
+##### Адрес: `/api/changeEmail`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Параметры: 
+- email - Email адрес пользователя
+##### Метод: `POST` 
+``` 
+{ 
+    "data": "", 
+    "errors": { 
+        "firstname": "", 
+        "email": "", 
+        "password": "" 
+    } 
+}
+```
+
+Изменение пароля
+--- 
+##### Адрес: `/api/changePassword`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Параметры: 
+- password - Новый пароль пользователя
+##### Метод: `POST` 
+``` 
+{ 
+    "data": "", 
+    "errors": { 
+        "firstname": "", 
+        "email": "", 
+        "password": "" 
+    } 
+}
+```
+
+Получение информации о профиле
+--- 
+##### Адрес: `/api/profile`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Метод: `GET` 
+``` 
+{
+    "firstname": "Никита",
+    "email": "n.s.mitasov@mpt.ru"
+}
+```

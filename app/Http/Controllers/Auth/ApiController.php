@@ -109,23 +109,97 @@ class ApiController extends Controller
     }
 
     public function ChangeName(Request $request){
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:40',
+        ],[
+            'firstname.required' => 'Имя пользователя обязательно для заполнения',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => '',
+                'errors' => [
+                    'firstname' => $validator->errors()->first('firstname'),
+                    'email' => '',
+                    'password' => ''
+                ]
+            ], 200);
+        }
         $user = $request->user();
         $user->firstname = $request->input('name');
         $user->save();
-        return response(null, 200);
+        return response()->json([
+            'data' => '',
+            'errors' => [
+                'firstname' => '',
+                'email' => '',
+                'password' => ''
+            ]
+        ], 200);
     }
 
     public function ChangePassword(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8'
+        ],[
+            'password.required' => 'Пароль обязателен для заполнения',
+            'password.min' => 'Пароль должен минимум состоять из 8 символов'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => '',
+                'errors' => [
+                    'firstname' => '',
+                    'email' => '',
+                    'password' => $validator->errors()->first('password')
+                ]
+            ], 200);
+        }
         $user = $request->user();
         $user->password = bcrypt($request->input('password'));
         $user->save();
-        return response(null, 200);
+        return response()->json([
+            'data' => '',
+            'errors' => [
+                'firstname' => '',
+                'email' => '',
+                'password' => ''
+            ]
+        ], 200);
     }
 
     public function ChangeEmail(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email:rfc,dns|max:255|unique:users',
+        ],[
+            'email.required' =>  'Email обязателен для заполнения',
+            'email.email' => 'Необходимо ввести валидный Email адрес',
+            'email.unique' => 'Пользователь с таким Email адресом уже существует',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'data' => '',
+                'errors' => [
+                    'firstname' => '',
+                    'email' => $validator->errors()->first('email'),
+                    'password' => ''
+                ]
+            ], 200);
+        }
+
         $user = $request->user();
         $user->email = $request->input('email');
         $user->save();
-        return response(null, 200);
+        return response()->json([
+            'data' => '',
+            'errors' => [
+                'firstname' => '',
+                'email' => '',
+                'password' => ''
+            ]
+        ], 200);
+    }
+
+    public function Profile(Request $request){
+        return $request->user()->only(['firstname', 'email']);
     }
 }
