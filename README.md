@@ -3,7 +3,7 @@
 --- 
 ##### Адрес: `/api/register`
 ##### Метод: `POST` 
-##### Параметры: `firstname, email, password`
+##### Параметры: `firstname, email, password, device_id`
 
 ```
 { 

@@ -42,6 +42,7 @@ class ApiController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->firstname = $request->input('firstname');
         $user->role = 1;
+        $user->device_id = $request->input('device_id');
         $user->save();
         $token = $user->createToken($request->email)->plainTextToken;
         $errors['firstname'] = '';
@@ -86,7 +87,7 @@ class ApiController extends Controller
         $errors['password'] = '';
         $user->device_id = $request->input('device_id');
         return response()->json([
-            'data' => $user->createToken($request->email)->plainTextToken,
+            'data' => $user->createToken($request->input('email'))->plainTextToken,
             'errors' => $errors
         ], 200);
     }
