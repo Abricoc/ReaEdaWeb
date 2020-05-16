@@ -11,13 +11,13 @@ class ProductController extends Controller
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Product::with(['category', 'place'])->get();
-        return view('Product.index', [
+        return view('product.index', [
             'Products' => Product::paginate(5)
         ]);
     }
 
     public function create(){
-        return view('Product.create');
+        return view('product.create');
     }
 
     public function store(Request $request){
@@ -50,13 +50,13 @@ class ProductController extends Controller
     }
 
     public function show($id){
-        return view('Product.show', [
+        return view('product.show', [
             'Model' => Product::findorfail($id)
         ]);
     }
 
     public function edit($id){
-        return view('Product.edit', [
+        return view('product.edit', [
            'Model' => Product::findorfail($id)
         ]);
     }

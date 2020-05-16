@@ -56,7 +56,7 @@
 [1. Global Styles]
 ------------------------------------------------------------*/
 
-html, 
+html,
 body {
     font-size: 14px;
     width: 100%;
@@ -1143,16 +1143,16 @@ blockquote {
     background-color: #fff;
 }
 
-.btn-default.active, 
-.btn-default:active, 
+.btn-default.active,
+.btn-default:active,
 .open>.dropdown-toggle.btn-default {
     border-color: #0070E0!important;
     background-color: rgba(0,112,224,.08);
     color: #0070E0;
 }
 
-.btn-default.active:hover, 
-.btn-default:active:hover, 
+.btn-default.active:hover,
+.btn-default:active:hover,
 .open > .dropdown-toggle.btn-default:hover {
     border-color: #E6E9EC;
     background-color: #E6E9EC;
@@ -1532,8 +1532,8 @@ blockquote {
 
 /* Navs & Tabs */
 
-.nav-tabs > li.active > a, 
-.nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
     border-color: #E5E9EC;
     border-bottom-color: transparent;
@@ -1573,8 +1573,8 @@ blockquote {
     border-bottom: 1px solid #E2E2E2!important;
 }
 
-.nav-tabs>li.active>a, 
-.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
     border: 1px solid transparent;
     color: #1B2733;
@@ -1912,11 +1912,11 @@ input.form-control.input-rounded {
 
 /* Tables */
 
-.table > tbody > tr > td, 
-.table > tbody > tr > th, 
-.table > tfoot > tr > td, 
-.table > tfoot > tr > th, 
-.table > thead > tr > td, 
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
 .table > thead > tr > th {
     border-color: #E6E8EB;
 }
@@ -1930,9 +1930,9 @@ input.form-control.input-rounded {
     background-color: #f7f7f7;
 }
 
-table.dataTable.display tbody tr.even > .sorting_1, 
+table.dataTable.display tbody tr.even > .sorting_1,
 table.dataTable.order-column.stripe tbody tr.even > .sorting_1,
-table.dataTable.stripe tbody tr.odd, 
+table.dataTable.stripe tbody tr.odd,
 table.dataTable.display tbody tr.odd {
     background-color: #f7f7f7;
 }
@@ -1952,7 +1952,7 @@ table.dataTable thead .sorting_desc {
     border: none;
     box-shadow: none;
     color: #637282!important;
-} 
+}
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
@@ -1973,7 +1973,7 @@ table.dataTable thead .sorting_desc {
 .dataTables_wrapper .dataTables_paginate .paginate_button.next,
 .dataTables_wrapper .dataTables_paginate .paginate_button.previous {
     border-radius: 25px;
-} 
+}
 
 th {
     font-weight: 400;
@@ -2118,7 +2118,7 @@ th {
 .dropdown-menu > li.active > a:focus {
     background: #f7f7f7;
     color: #2b2b2b;
-} 
+}
 
 .drop-title {
     display: block;
@@ -2422,10 +2422,10 @@ th {
     border-color: #EC5E69;
 }
 
-.panel-default .panel-title>.small, 
-.panel-default .panel-title > .small > a, 
-.panel-default .panel-title > a, 
-.panel-default .panel-title > small, 
+.panel-default .panel-title>.small,
+.panel-default .panel-title > .small > a,
+.panel-default .panel-title > a,
+.panel-default .panel-title > small,
 .panel-default .panel-title > small > a {
     color: #2b2b2b;
 }
@@ -2583,10 +2583,10 @@ th {
 
 .active-page.open > a i {
     color: #2b2b2b;
-} 
+}
 
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:focus, 
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
     color: #1f2229;
     background-color: transparent;
@@ -2605,7 +2605,7 @@ th {
         margin-right: 0;
         padding: 0;
     }
-    
+
     .page-header .navbar-nav > li > a > i {
         font-size: 14px;
         vertical-align: text-top;
@@ -2746,7 +2746,7 @@ th {
     opacity: 1!important;
 }
 
-.right-sidebar-tabs > .nav-tabs > li > a:focus, 
+.right-sidebar-tabs > .nav-tabs > li > a:focus,
 .right-sidebar-tabs > .nav-tabs > li > a:hover {
     text-decoration: none;
     background-color: transparent;
@@ -3419,7 +3419,7 @@ body:not(.page-sidebar-fixed) .page-sidebar .slimScrollDiv {
 .search-form {
     left: 0;
     right: 0;
-    position: absolute; 
+    position: absolute;
     background: #fff;
     height: 56px;
     z-index: 41;
@@ -3934,8 +3934,8 @@ body.error-page {
     background: #f1f1f1;
 }
 
-.cd-timeline-content p, 
-.cd-timeline-content .cd-read-more, 
+.cd-timeline-content p,
+.cd-timeline-content .cd-read-more,
 .cd-timeline-content .cd-date {
     font-size: 14px;
 }
@@ -3964,18 +3964,18 @@ body.error-page {
 /* Maps */
 
 .page-inner.full-page {
-    display: -webkit-box;  
-    display: -moz-box;   
-    display: -ms-flexbox; 
-    display: -webkit-flex;  
-    display: flex; 
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 }
 
 #map-canvas {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
-    -ms-flex: 1; 
+    -ms-flex: 1;
     flex: 1;
 }
 
@@ -3983,14 +3983,14 @@ body.error-page {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
-    -ms-flex: 1; 
+    -ms-flex: 1;
     flex: 1;
     line-height: 1px;
     position: relative;
     overflow: hidden;
 }
 
-.jqvmap-zoomin, 
+.jqvmap-zoomin,
 .jqvmap-zoomout {
     border-radius: 4px;
     background: #f1f1f1;
@@ -4413,7 +4413,7 @@ body.error-page {
 #sidebar-toggle-button-close {
     display: none;
 }
-    
+
 @media (max-width: 991px) {
     .email-actions {
         margin-top: 20px;
@@ -4421,11 +4421,11 @@ body.error-page {
 }
 
 @media (max-width: 991px) {
-    
+
     .page-header-fixed .page-header {
         left: 0;
     }
-    
+
     .page-sidebar {
         position: fixed!important;
         left: -240px;
@@ -4434,31 +4434,31 @@ body.error-page {
         -o-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
     }
-    
+
     .page-inner:not(.login-page) {
         padding: 5px 40px 42px 40px;
     }
-    
+
     .page-content,
     .page-sidebar-collapsed .page-content {
         width: 100%;
     }
-    
-    .page-sidebar-fixed .page-content,    
+
+    .page-sidebar-fixed .page-content,
     .page-sidebar-fixed.page-sidebar-collapsed .page-content {
         margin-left: 0px;
     }
-    
+
     .page-header,
     .page-header .navbar,
     .page-header .navbar-default .container-fluid, .page-header .navbar-default .navbar-collapse {
         height: auto!important;
     }
-    
+
     .logo-sm {
         display: block;
     }
-    
+
     .logo-sm #sidebar-toggle-button {
         float: left;
         margin-top: 8px;
@@ -4469,7 +4469,7 @@ body.error-page {
         padding: 7px 0;
         color: #637282!important;
     }
-    
+
     .logo-sm .logo-box {
         float: left;
         background: #fff;
@@ -4480,58 +4480,58 @@ body.error-page {
         margin-bottom: 8px;
         width: auto;
     }
-    
+
     .page-sidebar-collapsed .logo-sm .logo-box {
         height: auto;
         display: block;
         padding-left: 0px;
     }
-    
+
     .page-sidebar-fixed .logo-sm .logo-box {
         position: relative;
         z-index: 40;
     }
-    
+
     .page-sidebar-collapsed .logo-sm .logo-box {
         text-align: left;
     }
-    
+
     .page-sidebar-collapsed .logo-sm .logo-box span {
         display: block;
     }
-    
+
     .page-header {
         padding-left: 25px;
     }
-    
+
     .navbar .dropdown:not(.open) .dropdown-menu {
         display: none;
     }
-    
+
     .navbar li {
         display: inline-block;
     }
-    
+
     .navbar-collapse {
         padding: 0px 25px!important;
     }
-    
+
     .navbar-nav {
         float: right;
     }
-    
+
     .navbar-nav.navbar-right {
         display: none;
     }
-    
+
     .page-sidebar-visible .page-sidebar {
         left: 0;
     }
-    
+
     #fixed-sidebar-toggle-button {
         display: none;
     }
-    
+
     #sidebar-toggle-button-close {
         margin-left: 12px;
         float: right;
@@ -4540,26 +4540,26 @@ body.error-page {
         margin-top: 6px;
         display: block;
     }
-    
+
     .page-sidebar-collapsed #sidebar-toggle-button-close {
         margin: 0px auto;
         float: none;
     }
-    
+
     .navbar-toggle {
         border-radius: 100%;
         width: 40px;
     }
-    
+
     .page-header .navbar-nav > li > a {
         font-size: 14px;
     }
-    
+
     .page-error .page-inner {
         vertical-align: top;
         padding: 40px;
     }
-    
+
     .grid-gallery figcaption h3 {
         font-size: 13px;
         font-weight: bold;
@@ -4589,4 +4589,8 @@ body.error-page {
 .color-item span {
     font-weight: bold;
     font-size: 12px;
+}
+
+.btn-paginate{
+    border-radius: 0px;
 }

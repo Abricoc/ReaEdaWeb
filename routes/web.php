@@ -7,7 +7,7 @@ Auth::routes();
 Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function(){
-    //Place routing
+    //place routing
     Route::get('/places', 'PlaceController@index')->name('Places');
     Route::get('/places/create', 'PlaceController@create')->name('CreatePlace');
     Route::post('/places/create', 'PlaceController@store');
@@ -15,9 +15,9 @@ Route::middleware('auth')->group(function(){
     Route::delete('/places/{id}', 'PlaceController@destroy');
     Route::get('/places/edit/{id}', 'PlaceController@edit');
     Route::put('/places/edit/{id}', 'PlaceController@update');
-//Place end routing
+//place end routing
 
-//Category routing
+//category routing
     Route::get('/categorys', 'CategoryController@index')->name('Categorys');
     Route::get('/categorys/create', 'CategoryController@create')->name('CreateCategory');
     Route::post('/categorys/create', 'CategoryController@store');
@@ -25,9 +25,9 @@ Route::middleware('auth')->group(function(){
     Route::delete('/categorys/{id}', 'CategoryController@destroy');
     Route::get('/categorys/edit/{id}', 'CategoryController@edit');
     Route::put('/categorys/edit/{id}', 'CategoryController@update');
-//Category end routing
+//category end routing
 
-//Product routing
+//product routing
     Route::get('/products', 'ProductController@index')->name('Products');
     Route::get('/products/create', 'ProductController@create')->name('CreateProduct');
     Route::post('/products/create', 'ProductController@store');
@@ -35,5 +35,5 @@ Route::middleware('auth')->group(function(){
     Route::delete('/products/{id}', 'ProductController@destroy');
     Route::get('/products/edit/{id}', 'ProductController@edit');
     Route::put('/products/edit/{id}', 'ProductController@update');
-//Product end routing
+//product end routing
 });

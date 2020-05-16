@@ -27,7 +27,7 @@
 --- 
 ##### Адрес: `/api/login` 
 ##### Метод: `POST` 
-##### Параметры: `email, password`
+##### Параметры: `email, password, device_id`
 ``` 
 { 
     "data": "", 

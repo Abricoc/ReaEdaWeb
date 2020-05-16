@@ -13,14 +13,14 @@ class PlaceController extends Controller
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Place::all();
-        return view('Place.index', [
+        return view('place.index', [
             'Places' => Place::paginate(5)
         ]);
     }
 
     public function create()
     {
-        return view('Place.create');
+        return view('place.create');
     }
 
     public function store(Request $request)
@@ -46,14 +46,14 @@ class PlaceController extends Controller
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Place::findorfail($id);
-        return view('Place.show', [
+        return view('place.show', [
             'Model' => Place::findorfail($id)
         ]);
     }
 
     public function edit($id)
     {
-        return view('Place.edit',[
+        return view('place.edit',[
             'Model' => Place::findorfail($id)
         ]);
     }

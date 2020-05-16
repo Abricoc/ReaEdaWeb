@@ -26,4 +26,8 @@ class Product extends Model
     public function place(){
         return $this->belongsTo('App\Models\Place');
     }
+
+    protected $casts = [
+        'dish_of_the_day' => 'boolean'
+    ];
 }

@@ -84,6 +84,7 @@ class ApiController extends Controller
         }
         $errors['email'] = '';
         $errors['password'] = '';
+        $user->device_id = $request->input('device_id');
         return response()->json([
             'data' => $user->createToken($request->email)->plainTextToken,
             'errors' => $errors
@@ -93,6 +94,7 @@ class ApiController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
+        $request->user()->device_id='';
         return response()->json([
             'data' => 'OK',
             'errors' => []

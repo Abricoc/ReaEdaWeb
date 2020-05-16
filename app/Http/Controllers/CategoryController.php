@@ -14,14 +14,14 @@ class CategoryController extends Controller
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Category::all();
-        return view('Category.index', [
+        return view('category.index', [
             'Categorys' => Category::all()
         ]);
     }
 
     public function create()
     {
-        return view('Category.create');
+        return view('category.create');
     }
 
     public function store(Request $request)
@@ -41,14 +41,14 @@ class CategoryController extends Controller
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Category::findorfail($id);
-        return view('Category.show', [
+        return view('category.show', [
             'Model' => Category::findorfail($id)
         ]);
     }
 
     public function edit($id)
     {
-        return view('Category.edit',[
+        return view('category.edit',[
             'Model' => Category::findorfail($id)
         ]);
     }
