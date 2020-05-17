@@ -209,7 +209,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
                 showrows_option = true;
 
                 // div num rows
-                var numrowsDiv = '<div id="for_numrows" class="for_numrows" style="display: inline;"><label for="numrows">'+translate(voc_show_rows)+': </label><select id="numrows"></select></div>';
+                var numrowsDiv = '<div id="for_numrows" class="for_numrows" style="display: inline;"><label for="numrows">'+translate(voc_show_rows)+': </label><select id="numrows" style="padding: 5px; margin: 0px 10px"></select></div>';
                 // append div to choose num rows to show
                 Table.before(numrowsDiv);
                 // get show rows options and append select to its div
@@ -274,7 +274,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
             **/
             if(options.appendFilterby === true || Table.hasClass('tableFilterBy')) {
                 // Create div and select to filter
-                var filterbyDiv = '<div id="for_filter_by" class="for_filter_by" style="display: inline;"><label for="filter_by">'+translate(voc_filter_by)+': </label><select id="filter_by"></select> <input id="filter_input" type="text" placeholder="'+translate(voc_type_here_filter)+'"></div>';
+                var filterbyDiv = '<div id="for_filter_by" class="for_filter_by" style="display: inline;"><label for="filter_by">'+translate(voc_filter_by)+': </label><select style="padding: 5px; margin: 0px 10px;" id="filter_by"></select> <input id="filter_input" style="padding: 5px; margin: 0px 10px;" type="text" placeholder="'+translate(voc_type_here_filter)+'"></div>';
                 $(this).before(filterbyDiv);
 
                 // Populate select with every th text and as value use column number
@@ -544,40 +544,42 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
         function appendPageControllers() {
             // reset div
             $('#pagesControllers').html('');
-            // First
-            $('#pagesControllers').append($('<button>', {
-              value: 'first',
-              text: '<<',
-              class: 'btn btn-primary btn-paginate'
-            }));
-            // Previous
-            $('#pagesControllers').append($('<button>', {
-              value: 'prev',
-              text: '<',
-              class: 'btn btn-primary btn-paginate'
-            }));
-            // Numbers
-            for (i = 1; i <= numPages; i++) {
+            if(numPages > 0){
+                // First
                 $('#pagesControllers').append($('<button>', {
-                  value: i,
-                  text: i,
-                  class: 'btn btn-primary btn-paginate btn-paginate-num'
+                    value: 'first',
+                    text: '<<',
+                    class: 'btn btn-primary btn-paginate'
                 }));
+                // Previous
+                $('#pagesControllers').append($('<button>', {
+                    value: 'prev',
+                    text: '<',
+                    class: 'btn btn-primary btn-paginate'
+                }));
+                // Numbers
+                for (i = 1; i <= numPages; i++) {
+                    $('#pagesControllers').append($('<button>', {
+                        value: i,
+                        text: i,
+                        class: 'btn btn-primary btn-paginate btn-paginate-num'
+                    }));
+                }
+                // Next
+                $('#pagesControllers').append($('<button>', {
+                    value: 'next',
+                    text: '>',
+                    class: 'btn btn-primary btn-paginate'
+                }));
+                // Last
+                $('#pagesControllers').append($('<button>', {
+                    value: 'last',
+                    text: '>>',
+                    class: 'btn btn-primary btn-paginate'
+                }));
+                $('.btn-paginate-num').removeClass('currentPage');
+                $('.btn-paginate-num').eq(currentPage).addClass('currentPage');
             }
-            // Next
-            $('#pagesControllers').append($('<button>', {
-              value: 'next',
-              text: '>',
-              class: 'btn btn-primary btn-paginate'
-            }));
-            // Last
-            $('#pagesControllers').append($('<button>', {
-              value: 'last',
-              text: '>>',
-              class: 'btn btn-primary btn-paginate'
-            }));
-            $('.btn-paginate-num').removeClass('currentPage');
-            $('.btn-paginate-num').eq(currentPage).addClass('currentPage');
         }
 
         /**

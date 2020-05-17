@@ -86,24 +86,15 @@ class ApiController extends Controller
         $errors['email'] = '';
         $errors['password'] = '';
         $user->device_id = $request->input('device_id');
+        $user->save();
         return response()->json([
             'data' => $user->createToken($request->input('email'))->plainTextToken,
             'errors' => $errors
         ], 200);
     }
 
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-        $request->user()->device_id='';
-        return response()->json([
-            'data' => 'OK',
-            'errors' => []
-        ], 200);
-    }
-
     public function ResetPassword(Request $request){
-        $user =  User::where('email', $request->input('email'))->get();
+        $user = User::where('email', $request->input('email'))->get();
         $newPassword = Str::random(8);
         $user->password = bcrypt($newPassword);
         $user->save();

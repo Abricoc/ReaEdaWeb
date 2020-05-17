@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+    private static $StatusDictionary = [
+        'Accepted' => 'Заказ принят в обработку',
+        'Cook' => 'Заказ в процессе приготовления',
+        'Ready' => 'Заказ готов к выдаче',
+        'Issued' => 'Заказ выдан клиенту',
+        'CancelledByClient' => 'Заказ отменён клиентом',
+        'CancelledByREA' => 'Заказ отменён столовой'
+    ];
+
     /**
      * @param $DeviceID
      * @param $Message
      */
-    private function SendNotification($DeviceID, $Message){
+    public static function SendNotification($DeviceID, $Message){
         $data = [
             "to" => $DeviceID,
             "notification" => [
@@ -50,15 +59,28 @@ class OrdersController extends Controller
             ], 200);
         }
         $order = new Order;
-        $order->status = 'Принято в обработку';
+        $order->status = self::$StatusDictionary['Accepted'];
         $order->user_id = $request->user()->id;
         $order->comment = $request->input('comment');
         $order->products = $request->user()->cart;
         $order->save();
-        $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " успешно оформлен");
+        if($request->user()->device_id != '') {
+            $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " успешно оформлен!!!");
+        }
         return response([
             'status' => "Success"
         ], 200);
     }
 
+    public function Orders(){
+        return view('orders.index');
+    }
+
+    public function CompleteOrders(){
+        return view('orders.complete');
+    }
+
+    public function ChangeStatus(Request $request){
+
+    }
 }

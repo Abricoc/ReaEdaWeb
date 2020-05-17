@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\Place;
-use App\Http\Requests\StorePlace;
 
 class PlaceController extends Controller
 {
+    public static function getRandomFileName($path, $extension='')
+    {
+        $extension = $extension ? '.' . $extension : '';
+        $path = $path ? $path . '/' : '';
+        do {
+            $name = md5(microtime() . rand(0, 9999));
+            $file = $path . $name . $extension;
+        } while (file_exists($file));
+        return $name . $extension;
+    }
+
     public function index()
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
@@ -37,7 +46,9 @@ class PlaceController extends Controller
         ]);
         $place = new Place;
         $place->place_name = $request->input('place_name');
-        $place->place_photo = '/storage/' . $request->file('place_photo')->store('places', 'public');
+        $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
+        $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);
+        $place->place_photo = '/images/places/' . $newFileName;
         $place->save();
         return redirect('/places');
     }
@@ -72,8 +83,9 @@ class PlaceController extends Controller
         ]);
         $Model->place_name = $request->input('place_name');
         if($request->hasFile('place_photo')){
-            $path = $request->file('place_photo')->store('places', 'public');
-            $Model->place_photo = $path;
+            $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
+            $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);
+            $Model->place_photo = '/images/places/' . $newFileName;
         }
         $Model->save();
         return redirect('/places');

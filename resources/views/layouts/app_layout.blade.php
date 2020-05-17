@@ -22,20 +22,25 @@
             <div class="page-sidebar-menu">
                 <ul class="accordion-menu">
                     <li style="margin-left: 50px; font-size: 1.2em;">Администрирование</li>
-                    <li>
-                        <a href="/">
-                            <i class="menu-icon icon-download"></i><span>Заказы</span>
+                    <li class="{{ Request::is('orders*') ? 'active-page' : '' }}">
+                        <a href="/orders">
+                            <i class="fa fa-thermometer-half" aria-hidden="true"></i><span> Заказы в работе</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('completeOrders*') ? 'active-page' : '' }}">
+                        <a href="/completeOrders">
+                            <i class="fa fa-thermometer-full" aria-hidden="true"></i><span> Выполненные заказы</span>
                         </a>
                     </li>
                     <li style="margin-left: 50px; font-size: 1.2em;">Справочники</li>
-                        <li class="{{ Request::is('places*') ? 'active-page' : '' }}">
-                            <a href="/places" class="active-page">
-                                <span><i class="fa fa-table" aria-hidden="true"></i> Столовые</span>
-                            </a>
-                        </li>
                     <li class="{{ Request::is('categorys*') ? 'active-page' : '' }}">
                         <a href="/categorys">
                             <span><i class="fa fa-table" aria-hidden="true"></i> Категории</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('places*') ? 'active-page' : '' }}">
+                        <a href="/places" class="active-page">
+                            <span><i class="fa fa-table" aria-hidden="true"></i> Столовые</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('products*') ? 'active-page' : '' }}">

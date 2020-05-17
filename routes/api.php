@@ -29,3 +29,7 @@ Route::middleware('auth:sanctum')->post('/changePassword', 'Auth\ApiController@C
 Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
 Route::middleware('auth:sanctum')->post('/checkout', 'OrdersController@CheckOut');
 Route::middleware('auth:sanctum')->get('/profile', 'Auth\ApiController@Profile');
+
+Route::post('/send', function (){
+    \App\Http\Controllers\OrdersController::SendNotification('cmABI9jBYjI:APA91bEgwIUDSzQmL3cycADfF0u7C5AGbGU6iOWDVExzy8dsJeddAWITnxpK7_F4OXmxNBfLfHEnt660klnsWvetPztWxGqn6SkU8EhtvEHMZWhx_2s-HGZfRcd5kBYVcCGB3WwjbmmL', 'Залупа');
+});

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed category_id
  * @property mixed place_id
  * @property mixed photo
+ * @property bool|mixed dish_of_the_day
  * @method static findorfail($id)
  */
 class Product extends Model

@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public static function getRandomFileName($path, $extension='')
+    {
+        $extension = $extension ? '.' . $extension : '';
+        $path = $path ? $path . '/' : '';
+        do {
+            $name = md5(microtime() . rand(0, 9999));
+            $file = $path . $name . $extension;
+        } while (file_exists($file));
+        return $name . $extension;
+    }
+
     public function index()
     {
         if(\Illuminate\Support\Facades\Request::is('api/*'))
@@ -44,7 +55,10 @@ class ProductController extends Controller
             $product->dish_of_the_day = true;
         else
             $product->dish_of_the_day = false;
-        $product->photo = '/storage/' . $request->file('photo')->store('products', 'public');
+
+        $newFileName = self::getRandomFileName(public_path() . '/images/products', $request->file('photo')->getClientOriginalExtension());
+        $request->file('photo')->move(public_path()  . '/images/products/', $newFileName);
+        $product->photo = '/images/products/' . $newFileName;
         $product->save();
         return redirect('/products');
     }
@@ -61,7 +75,8 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'name_product' => 'required|max:30',
             'price' => 'required',
@@ -69,7 +84,7 @@ class ProductController extends Controller
             'photo' => 'mimes:jpeg,jpg,png,gif',
             'category_id' => 'required',
             'place_id' => 'required'
-        ],[
+        ], [
             'name_product.required' => 'Наименование продукта является обязательным полем',
             'name_product.max' => 'В наименовании продукта должно быть не больше 30 символов',
             'price.required' => 'Цена является обязательным полем',
@@ -81,12 +96,16 @@ class ProductController extends Controller
         $product->text = $request->input('text');
         $product->category_id = $request->input('category_id');
         $product->place_id = $request->input('place_id');
-        if($request->input('day_check') == 'on')
+        if ($request->input('day_check') == 'on')
             $product->dish_of_the_day = true;
         else
             $product->dish_of_the_day = false;
-        if($request->hasFile('photo'))
-            $product->photo = '/storage/' . $request->file('photo')->store('products', 'public');
+        if ($request->hasFile('photo'))
+        {
+            $newFileName = self::getRandomFileName(public_path() . '/images/products', $request->file('photo')->getClientOriginalExtension());
+            $request->file('photo')->move(public_path()  . '/images/products/', $newFileName);
+            $product->photo = '/images/products/' . $newFileName;
+        }
         $product->save();
         return redirect('/products');
     }
