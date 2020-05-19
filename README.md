@@ -435,3 +435,17 @@
     "email": "n.s.mitasov@mpt.ru"
 }
 ```
+
+Получение информации о профиле
+--- 
+##### Адрес: `/api/checkout`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Параметры:
+- comment - Комментарий к заказу
+##### Метод: `POST` 
+``` 
+{
+    "status": "Success"
+}
+```

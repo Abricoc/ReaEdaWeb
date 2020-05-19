@@ -20,7 +20,7 @@ class CartController extends Controller
             $cart = [];
         }
         if(count($cart) > 0){
-            if($product->place->id != \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id){
+            if(\App\Models\Product::findorfail($request->input('productId'))->place->id != \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id){
                 $cart = [];
             }
         }
