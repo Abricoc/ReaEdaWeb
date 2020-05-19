@@ -27,4 +27,4 @@ Route::middleware('auth:sanctum')->post('/changePassword', 'Auth\ApiController@C
 Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
 Route::middleware('auth:sanctum')->post('/checkout', 'OrdersController@CheckOut');
 Route::middleware('auth:sanctum')->get('/profile', 'Auth\ApiController@Profile');
-Route::middleware('api')->get('/orders', 'OrdersController@GetMyOrders');
+Route::middleware('auth:sanctum')->get('/orders', 'OrdersController@GetMyOrders');

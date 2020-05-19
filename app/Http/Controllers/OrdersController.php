@@ -98,6 +98,6 @@ class OrdersController extends Controller
     }
 
     public function GetMyOrders(Request $request){
-        return Order::select(['id', 'status', 'comment', 'products', 'created_at', 'final_amount'])->where('user_id', 15)->get();
+        return Order::select(['id', 'status', 'comment', 'products', 'final_amount', 'created_at'])->where('user_id', $request->user()->id)->get();
     }
 }

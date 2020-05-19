@@ -21,6 +21,7 @@ class Order extends Model
     protected $fillable = ['id', 'status', 'comment', 'products', 'created_at'];
 
     protected $casts = [
-        'products' => 'array'
+        'products' => 'array',
+        'created_at' => 'datetime:d-m-Y H:i:s'
     ];
 }
