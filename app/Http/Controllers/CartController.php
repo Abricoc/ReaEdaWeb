@@ -54,7 +54,7 @@ class CartController extends Controller
             'TotalNumber' => $countAllItems,
             'FinalAmount' => $FinalAmount,
             'CurrentCount' => $currentCount,
-            'place' => \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id
+            'Place' => \App\Models\Product::findorfail($request->input('productId'))->place->id
         ], 200);
     }
 
@@ -97,15 +97,19 @@ class CartController extends Controller
             'TotalNumber' => $countAllItems,
             'FinalAmount' => $FinalAmount,
             'CurrentCount' => $currentCount,
-            'place' => $product->place->id
+            'Place' => $product->place->id
         ], 200);
     }
 
     public function GetCart(Request $request){
-        $cart = $request->user()->cart;
         $place = 0;
+        $cart = $request->user()->cart;
+        if (is_null($cart)) {
+            $cart = [];
+        }
         if(count($cart) > 0)
             $place = \App\Models\Product::findorfail($cart[0]['product']['id'])->place->id;
+
         $countAllItems = 0;
         $FinalAmount = 0;
         for ($i = 0; $i < count($cart); $i++)
@@ -118,7 +122,7 @@ class CartController extends Controller
             'TotalNumber' => $countAllItems,
             'FinalAmount' => $FinalAmount,
             'CurrentCount' => 0,
-            'place' => $place
+            'Place' => $place
         ], 200);
     }
 
@@ -130,7 +134,7 @@ class CartController extends Controller
             'TotalNumber' => 0,
             'FinalAmount' => 0,
             'CurrentCount' => 0,
-            'place'=> 0
+            'Place'=> 0
         ], 200);
     }
 }

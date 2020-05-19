@@ -546,7 +546,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
             $('#pagesControllers').html('');
             if(numPages > 0){
                 // First
-                $('#pagesControllers').append($('<button>', {
+                /*$('#pagesControllers').append($('<button>', {
                     value: 'first',
                     text: '<<',
                     class: 'btn btn-primary btn-paginate'
@@ -556,7 +556,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
                     value: 'prev',
                     text: '<',
                     class: 'btn btn-primary btn-paginate'
-                }));
+                }));*/
                 // Numbers
                 for (i = 1; i <= numPages; i++) {
                     $('#pagesControllers').append($('<button>', {
@@ -566,7 +566,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
                     }));
                 }
                 // Next
-                $('#pagesControllers').append($('<button>', {
+                /*$('#pagesControllers').append($('<button>', {
                     value: 'next',
                     text: '>',
                     class: 'btn btn-primary btn-paginate'
@@ -576,7 +576,7 @@ Important! Do not edit this plugin if you're not sure you're doing it right. The
                     value: 'last',
                     text: '>>',
                     class: 'btn btn-primary btn-paginate'
-                }));
+                }));*/
                 $('.btn-paginate-num').removeClass('currentPage');
                 $('.btn-paginate-num').eq(currentPage).addClass('currentPage');
             }

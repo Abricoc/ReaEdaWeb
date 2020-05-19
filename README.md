@@ -449,3 +449,47 @@
     "status": "Success"
 }
 ```
+
+Получение списка заказов
+--- 
+##### Адрес: `/api/orders`
+##### Заголовки: 
+- Authorization: Bearer {token}
+
+##### Метод: `POST` 
+``` 
+[
+    {
+        "id": 1,
+        "status": "Заказ принят в обработку",
+        "comment": "пп",
+        "products": [
+            {
+                "product": {
+                    "id": 3,
+                    "name_product": "Мясо по-французски",
+                    "price": "170",
+                    "text": "<p>Мясо по-французски</p>",
+                    "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                    "dish_of_the_day": true
+                },
+                "count": 3,
+                "price": 510
+            },
+            {
+                "product": {
+                    "id": 5,
+                    "name_product": "Морс Фруктовый сад Клюква",
+                    "price": "80",
+                    "text": "<p>Морс Фруктовый сад Клюква\r\n</p>",
+                    "photo": "/storage/products/151006.jpeg",
+                    "dish_of_the_day": false
+                },
+                "count": 2,
+                "price": 160
+            }
+        ],
+        "created_at": "2020-05-19T15:25:22.000000Z"
+    }
+]
+```

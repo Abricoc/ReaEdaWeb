@@ -49,7 +49,7 @@ class OrdersController extends Controller
      */
     public function CheckOut(Request $request){
         $products = $request->user()->cart;
-        if(isNull($products)){
+        if(is_null($products)){
             return response([
                 'status' => "Cart is empty"
             ], 200);
@@ -61,12 +61,19 @@ class OrdersController extends Controller
         $order = new Order;
         $order->status = self::$StatusDictionary['Accepted'];
         $order->user_id = $request->user()->id;
-        $order->comment = $request->input('comment');
-        $order->products = $request->user()->cart;
+        if($request->input('comment') != ''){
+            $order->comment = $request->input('comment');
+        }
+        else{
+            $order->comment = 'Комментарий отсутствует';
+        }
+        $order->products = $products;
         $order->save();
         if($request->user()->device_id != '') {
             $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " успешно оформлен!!!");
         }
+        $request->user()->cart = null;
+        $request->user()->save();
         return response([
             'status' => "Success"
         ], 200);
@@ -82,5 +89,9 @@ class OrdersController extends Controller
 
     public function ChangeStatus(Request $request){
 
+    }
+
+    public function GetMyOrders(Request $request){
+        return Order::select(['id', 'status', 'comment', 'products', 'created_at'])->where('user_id', 15)->get();
     }
 }

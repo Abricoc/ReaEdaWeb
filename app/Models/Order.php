@@ -17,7 +17,9 @@ class Order extends Model
     use SoftDeletes;
     protected $table = 'orders';
 
+    protected $fillable = ['id', 'status', 'comment', 'products', 'created_at'];
+
     protected $casts = [
-        'cart' => 'array'
+        'products' => 'array'
     ];
 }
