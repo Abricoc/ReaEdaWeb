@@ -67,6 +67,12 @@ class OrdersController extends Controller
         else{
             $order->comment = 'Комментарий отсутствует';
         }
+        $FinalAmount = 0;
+        for ($i = 0; $i < count($products); $i++)
+        {
+            $FinalAmount += $products[$i]['price'];
+        }
+        $order->final_amount = $FinalAmount;
         $order->products = $products;
         $order->save();
         if($request->user()->device_id != '') {
@@ -92,6 +98,6 @@ class OrdersController extends Controller
     }
 
     public function GetMyOrders(Request $request){
-        return Order::select(['id', 'status', 'comment', 'products', 'created_at'])->where('user_id', 15)->get();
+        return Order::select(['id', 'status', 'comment', 'products', 'created_at', 'final_amount'])->where('user_id', 15)->get();
     }
 }
