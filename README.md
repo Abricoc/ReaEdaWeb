@@ -456,7 +456,7 @@
 ##### Заголовки: 
 - Authorization: Bearer {token}
 
-##### Метод: `POST` 
+##### Метод: `GET` 
 ``` 
 [
     {
@@ -489,7 +489,7 @@
                 "price": 160
             }
         ],
-        "final_amount": 670
+        "final_amount": 670,
         "created_at": "19-05-2020 15:25:22"
     }
 ]
