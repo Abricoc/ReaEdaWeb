@@ -119,7 +119,7 @@ class ApiController extends Controller
             ], 200);
         }
         $user = $request->user();
-        $user->firstname = $request->input('name');
+        $user->firstname = $request->input('firstname');
         $user->save();
         return response()->json([
             'data' => '',

@@ -23,7 +23,7 @@ class ProductController extends Controller
         if(\Illuminate\Support\Facades\Request::is('api/*'))
             return Product::with(['category', 'place'])->get();
         return view('product.index', [
-            'Products' => Product::paginate(5)
+            'Products' => Product::all()
         ]);
     }
 
