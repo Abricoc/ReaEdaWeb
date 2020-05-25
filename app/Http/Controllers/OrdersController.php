@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -72,6 +73,7 @@ class OrdersController extends Controller
         {
             $FinalAmount += $products[$i]['price'];
         }
+        $order->place_name = Product::findorfail($products[0]['id'])->place->place_name;
         $order->final_amount = $FinalAmount;
         $order->products = $products;
         $order->save();

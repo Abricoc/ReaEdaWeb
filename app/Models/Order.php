@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed products
  * @property mixed id
  * @property int|mixed final_amount
+ * @property int|mixed place_name
  */
 class Order extends Model
 {
