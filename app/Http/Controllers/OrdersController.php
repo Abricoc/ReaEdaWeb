@@ -88,7 +88,9 @@ class OrdersController extends Controller
     }
 
     public function Orders(){
-        return view('orders.index');
+        return view('orders.index', [
+            'Orders' => Order::where('status', self::$StatusDictionary['Accepted'])->orWhere('status', self::$StatusDictionary['Cook'])->orWhere('status', self::$StatusDictionary['Ready'])->get()
+        ]);
     }
 
     public function CompleteOrders(){

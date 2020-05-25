@@ -21,6 +21,11 @@ class Order extends Model
 
     protected $fillable = ['id', 'status', 'comment', 'products', 'created_at'];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     protected $casts = [
         'products' => 'array',
         'created_at' => 'datetime:d.m.Y H:i:s',
