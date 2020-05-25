@@ -40,7 +40,7 @@
                     </li>
                     <li class="{{ Request::is('places*') ? 'active-page' : '' }}">
                         <a href="/places" class="active-page">
-                            <span><i class="fa fa-table" aria-hidden="true"></i> Столовые</span>
+                            <span><i class="fa fa-table" aria-hidden="true"></i> Рестораны</span>
                         </a>
                     </li>
                     <li class="{{ Request::is('products*') ? 'active-page' : '' }}">

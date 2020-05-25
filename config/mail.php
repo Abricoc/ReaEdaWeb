@@ -83,7 +83,7 @@ return [
     */
 
     'from' => [
-        'address' => "n.s.mitasov@mpt.ru",
+        'address' => "abricoc@gmail.com",
         'name' => "Rea Eda",
     ],
 

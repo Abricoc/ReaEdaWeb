@@ -43,44 +43,33 @@
 - Пароль обязателен для заполнения 
 - Пароль должен минимум состоять из 8 символов
 
-Получение всех "Столовых"
+Получение всех ресторанов
 --- 
 ##### Адрес: `/api/places` 
 ##### Метод: `GET` 
 ``` 
 [
     {
-        "id": 2,
-        "place_name": "Нахимовский проспект, 21",
-        "place_photo": "places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
-    },
-    {
-        "id": 3,
-        "place_name": "Нежинская, 7",
-        "place_photo": "places/nIxfWgJuxoQmVSxSzYjuLq3XuHPkKvgAwsAQA1GL.jpeg"
-    },
-    {
-        "id": 5,
-        "place_name": "Нежинская, 71",
-        "place_photo": "places/HvmIkHCkPZI2bM1JxM0OGnNg2BJHB9JZcQkA6Mcp.jpeg"
-    },
-    {
-        "id": 9,
-        "place_name": "werwerwe",
-        "place_photo": "places/phfyywTEJClQcxXoN9gkO7jZ7AFGq0JNht9QQNnf.jpeg"
+        "id": 1,
+        "place_name": "Пиццерия",
+        "place_photo": "/images/places/94b40548b82a1b5b62192c5970544baf.jpg",
+        "place_open": "08:00",
+        "place_close": "18:00"
     }
 ]
 ``` 
 
-Получение конкретной "Столовой"
+Получение конкретного ресторана
 --- 
 ##### Адрес: `/api/places/{id}` 
 ##### Метод: `GET` 
 ```
 {
-    "id": 2,
-    "place_name": "Нахимовский проспект, 21",
-    "place_photo": "places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
+    "id": 1,
+    "place_name": "Пиццерия",
+    "place_photo": "/images/places/94b40548b82a1b5b62192c5970544baf.jpg",
+    "place_open": "08:00",
+    "place_close": "18:00"
 }
 ```
 Получение всех "Категорий"

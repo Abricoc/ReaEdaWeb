@@ -94,7 +94,7 @@ class ApiController extends Controller
     }
 
     public function ResetPassword(Request $request){
-        $user = User::where('email', $request->input('email'))->get();
+        $user = User::where('email', $request->input('email'))->first();
         $newPassword = Str::random(8);
         $user->password = bcrypt($newPassword);
         $user->save();

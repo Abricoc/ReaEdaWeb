@@ -36,16 +36,28 @@ class PlaceController extends Controller
     {
         $request->validate([
             'place_name' => 'required|unique:places|max:100',
-            'place_photo' => 'required|mimes:jpeg,jpg,png,gif'
+            'place_photo' => 'required|mimes:jpeg,jpg,png,gif',
+            'place_open' => 'required',
+            'place_close' => 'required'
         ], [
             'place_name.required' => 'Название столовой, является обязательным полем',
             'place_name.unique' => 'Столовая с таким названием уже существует',
             'place_name.max' => 'Название столовой не может быть больше 100 символов',
             'place_photo.mimes' => 'Фотография должна иметь следующее расширение: jpeg, jpg, png, gif.',
-            'place_photo.required' => 'Обязательно наличие фотографии'
+            'place_photo.required' => 'Обязательно наличие фотографии',
+            'place_open.required' => 'Обязательно для заполнения',
+            'place_close.required' => 'Обязательно для заполнения',
         ]);
+        if($request->input('place_open') > $request->input('place_close'))
+        {
+            return back()->withInput($request->input())->withErrors([
+                'place_open' => 'Начало работы должно быть раньше окончания'
+            ]);
+        }
         $place = new Place;
         $place->place_name = $request->input('place_name');
+        $place->place_open = $request->input('place_open');
+        $place->place_close = $request->input('place_close');
         $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
         $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);
         $place->place_photo = '/images/places/' . $newFileName;
@@ -73,15 +85,25 @@ class PlaceController extends Controller
     {
         $Model = Place::findorfail($id);
         $request->validate([
-            'place_name' => 'required|max:100',
-            'place_photo' => 'mimes:jpeg,jpg,png,gif'
+            'place_name' => 'required|unique:places,place_name,' . $id . 'max:100',
+            'place_photo' => 'mimes:jpeg,jpg,png,gif',
+            'place_open' => 'required',
+            'place_close' => 'required'
         ], [
             'place_name.required' => 'Название столовой, является обязательным полем',
             'place_name.max' => 'Название столовой не может быть больше 100 символов',
             'place_photo.mimes' => 'Фотография должна иметь следующее расширение: jpeg, jpg, png, gif.',
             'place_photo.required' => 'Обязательно наличие фотографии'
         ]);
+        if($request->input('place_open') > $request->input('place_close'))
+        {
+            return back()->withInput($request->input())->withErrors([
+                'place_open' => 'Начало работы должно быть раньше окончания'
+            ]);
+        }
         $Model->place_name = $request->input('place_name');
+        $Model->place_open = $request->input('place_open');
+        $Model->place_close = $request->input('place_close');
         if($request->hasFile('place_photo')){
             $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
             $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);

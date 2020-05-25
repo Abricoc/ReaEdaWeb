@@ -1,6 +1,6 @@
 @extends('layouts.app_layout')
 
-@section('title', 'Добавление новой столовой')
+@section('title', 'Добавление нового ресторана    ')
 
 @section('content')
     <div class="panel panel-white">
@@ -14,6 +14,23 @@
                 @error('place_name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                <div class="form-group">
+                    <label for="place_open">Время начала работы ресторана:</label>
+                    <input id="place_open" min="08:00" max="21:00" required class="form-control" type="time" name="place_open" value="{{ old('place_open') }}">
+                </div>
+                @error('place_open')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+                <div class="form-group">
+                    <label for="place_close">Время окончания работы ресторана:</label>
+                    <input id="place_close" min="08:00" max="21:00" required class="form-control" type="time" name="place_close" value="{{ old('place_close') }}">
+                </div>
+                @error('place_close')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
+
                 <div class="form-group">
                     <label for="place_photo">Фотография:</label>
                     <input id="place_photo" required accept="image/*" class="form-control" type="file" name="place_photo">
