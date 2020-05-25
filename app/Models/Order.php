@@ -22,6 +22,7 @@ class Order extends Model
 
     protected $casts = [
         'products' => 'array',
-        'created_at' => 'datetime:d-m-Y H:i:s'
+        'created_at' => 'datetime:d.m.Y H:i:s',
+        'select_date' => 'datetime:d.m.Y H:i'
     ];
 }
