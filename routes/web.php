@@ -8,8 +8,8 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function(){
     //place routing
-    Route::get('/places', 'PlaceController@index')->name('Places');
-    Route::get('/places/create', 'PlaceController@create')->name('CreatePlace');
+    Route::get('/places', 'PlaceController@index');
+    Route::get('/places/create', 'PlaceController@create');
     Route::post('/places/create', 'PlaceController@store');
     Route::get('/places/{id}', 'PlaceController@show');
     Route::delete('/places/{id}', 'PlaceController@destroy');

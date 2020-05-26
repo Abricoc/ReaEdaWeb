@@ -17,7 +17,7 @@
                 @enderror
                 <div class="form-group">
                     <label for="place_open">Время начала работы ресторана:</label>
-                    <input id="place_open" min="08:00" max="21:00" required class="form-control" type="time" name="place_open" value="{{ old('place_open') }}">
+                    <input id="place_open" min="08:00" max="21:00" required class="form-control" type="time" name="place_open" value="{{ $Model->place_open }}">
                 </div>
                 @error('place_open')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label for="place_close">Время окончания работы ресторана:</label>
-                    <input id="place_close" min="08:00" max="21:00" required class="form-control" type="time" name="place_close" value="{{ old('place_close') }}">
+                    <input id="place_close" min="08:00" max="21:00" required class="form-control" type="time" name="place_close" value="{{ $Model->place_close }}">
                 </div>
                 @error('place_close')
                 <div class="alert alert-danger">{{ $message }}</div>

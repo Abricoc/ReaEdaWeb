@@ -7,11 +7,15 @@
     <div class="panel-body">
         <div class="form-group">
             <div class="form-group">
-                <label for="place_name">Название столовой:</label>
-                <input id="place_name" readonly class="form-control" type="text" name="place_name" value="{{ $Model->place_name }}">
+                <label>Название столовой:</label>
+                <input readonly class="form-control" type="text" value="{{ $Model->place_name }}">
             </div>
             <div class="form-group">
-                <label for="place_photo">Фотография:</label></div>
+                <label>Время работы:</label>
+                <input readonly class="form-control" type="text" value="{{ $Model->place_open }} - {{ $Model->place_close }}">
+            </div>
+            <div class="form-group">
+                <label style="width: 100%">Фотография:</label>
                 <img width="500px" src="{{ $Model->place_photo }}" alt="{{ $Model->place_name }}">
             </div>
         </div>

@@ -1,17 +1,17 @@
 @extends('layouts.app_layout')
 
-@section('title', 'Столовые')
+@section('title', 'Рестораны')
 
 
 @section('content')
     <div class="panel panel-white">
         <div class="panel-body">
-            <a href="{{ route('CreatePlace') }}" class="btn btn-success m-b-sm">Добавить новую столовую</a>
+            <a href="/places/create" class="btn btn-success m-b-sm">Добавить новый ресторан</a>
             <div class="table-responsive">
                 <table id="PlaceTable" class="display table" style="width: 100%; cellspacing: 0;">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>№</th>
                         <th>Название</th>
                         <th>Фотография</th>
                         <th>Время работы ресторана</th>
