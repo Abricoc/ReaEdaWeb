@@ -119,4 +119,29 @@ class OrdersController extends Controller
         }
         return $orders;
     }
+
+    public function DeclineOrder(Request $request){
+        if($request->has('orderID')){
+            $orderID = $request->input('orderID');
+            $order = Order::findorfail($orderID);
+            if($order->user->id == $request->user()->id){
+                $order->status = self::$StatusDictionary['CancelledByClient'];
+                $order->save();
+                if($request->user()->device_id != '') {
+                    $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " отменён");
+                }
+                return response([
+                    'status' => 'Заказ отменён'
+                ], 200);
+            }else{
+                return response([
+                    'status' => 'Непредвиденная ошибка'
+                ], 200);
+            }
+        }else{
+            return response([
+                'status' => 'Непредвиденная ошибка'
+            ], 200);
+        }
+    }
 }

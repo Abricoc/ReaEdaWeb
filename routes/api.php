@@ -28,3 +28,4 @@ Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@Chan
 Route::middleware('auth:sanctum')->post('/checkout', 'OrdersController@CheckOut');
 Route::middleware('auth:sanctum')->get('/profile', 'Auth\ApiController@Profile');
 Route::middleware('auth:sanctum')->get('/orders', 'OrdersController@GetMyOrders');
+Route::middleware('auth:sanctum')->delete('/orders', 'OrdersController@DeclineOrder');
