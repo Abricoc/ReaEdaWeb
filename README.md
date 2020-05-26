@@ -449,39 +449,30 @@
 ``` 
 [
     {
-        "id": 1,
-        "status": "Заказ принят в обработку",
-        "place_name": "Нахимовский проспект, 21",
-        "comment": "пп",
-        "products": [
-            {
-                "product": {
-                    "id": 3,
-                    "name_product": "Мясо по-французски",
-                    "price": "170",
-                    "text": "<p>Мясо по-французски</p>",
-                    "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
-                    "dish_of_the_day": true
-                },
-                "count": 3,
-                "price": 510
-            },
-            {
-                "product": {
-                    "id": 5,
-                    "name_product": "Морс Фруктовый сад Клюква",
-                    "price": "80",
-                    "text": "<p>Морс Фруктовый сад Клюква\r\n</p>",
-                    "photo": "/storage/products/151006.jpeg",
-                    "dish_of_the_day": false
-                },
-                "count": 2,
-                "price": 160
-            }
-        ],
-        "final_amount": 670,
-        "select_date": "26.05.2020 14:00",
-        "created_at": "19.05.2020 15:25:22"
+        "order": {
+            "id": 7,
+            "status": "Заказ принят в обработку",
+            "place_name": "Стремянный переулок, 36",
+            "comment": "Комментарий отсутствует",
+            "products": [
+                {
+                    "product": {
+                        "id": 3,
+                        "name_product": "Мясо по-французски",
+                        "price": "170",
+                        "text": "<p>Мясо по-французски</p>",
+                        "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                        "dish_of_the_day": true
+                    },
+                    "count": 2,
+                    "price": 340
+                }
+            ],
+            "final_amount": 340,
+            "select_date": null,
+            "created_at": "26.05.2020 00:12"
+        },
+        "decline": false
     }
 ]
 ```

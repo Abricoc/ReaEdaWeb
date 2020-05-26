@@ -4,32 +4,44 @@
 
 
 @section('content')
-<div class="panel panel-white">
-    <div class="panel-body">
-        <div class="table-responsive">
-            <table id="CategorysTable" class="display table" style="width: 100%; cellspacing: 0;">
-                <thead>
-                <tr>
-                    <th>№ заказа</th>
-                    <th>Ресторан</th>
-                    <th>Имя клиента</th>
-                    <th>К какой дате заказ</th>
-                    <th>Статус заказа</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($Orders as $order)
+    <div id="orderApp" class="panel panel-white">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="CategorysTable" class="display table" style="width: 100%; cellspacing: 0;">
+                    <thead>
                     <tr>
-                        <td>{{ $order->id }}</td>
-                        <td>{{ $order->place_name }}</td>
-                        <td>{{ $order->user->firstname }}</td>
-                        <td>{{ $order->select_date }}</td>
+                        <th>№ заказа</th>
+                        <th>Ресторан</th>
+                        <th>Имя клиента</th>
+                        <th>Дата создания заказа</th>
+                        <th>К какой дате заказ</th>
+                        <th>Статус заказа</th>
+                        <th>Товары</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($Orders as $order)
+                        <tr>
+                            <td>{{ str_pad($order->id, 6 , '0', STR_PAD_LEFT) }}</td>
+                            <td>{{ $order->place_name }}</td>
+                            <td>{{ $order->user->firstname }}</td>
+                            <td>{{ date('d.m.Y H:i', strtotime($order->created_at)) }}</td>
+                            <td>{{ date('d.m.Y H:i', strtotime($order->select_date)) }}</td>
+                            <td>
+                                <select class="form-control">
+                                    @foreach($Statuses as $key => $value)
+                                        <option @if($value == $order->status) selected @endif value="{{$key}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <a title="Посмотреть" href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-
 @endsection

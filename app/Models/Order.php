@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\OrdersController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,7 +29,7 @@ class Order extends Model
 
     protected $casts = [
         'products' => 'array',
-        'created_at' => 'datetime:d.m.Y H:i:s',
+        'created_at' => 'datetime:d.m.Y H:i',
         'select_date' => 'datetime:d.m.Y H:i'
     ];
 }

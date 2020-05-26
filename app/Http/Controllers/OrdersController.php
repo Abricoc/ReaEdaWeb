@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
-    private static $StatusDictionary = [
+    public static $StatusDictionary = [
         'Accepted' => 'Заказ принят в обработку',
         'Cook' => 'Заказ в процессе приготовления',
         'Ready' => 'Заказ готов к выдаче',
@@ -73,7 +73,7 @@ class OrdersController extends Controller
         {
             $FinalAmount += $products[$i]['price'];
         }
-        $order->place_name = Product::findorfail($products[0]['id'])->place->place_name;
+        $order->place_name = Product::findorfail($products[0]['product']['id'])->place->place_name;
         $order->final_amount = $FinalAmount;
         $order->products = $products;
         $order->save();
@@ -89,7 +89,14 @@ class OrdersController extends Controller
 
     public function Orders(){
         return view('orders.index', [
-            'Orders' => Order::where('status', self::$StatusDictionary['Accepted'])->orWhere('status', self::$StatusDictionary['Cook'])->orWhere('status', self::$StatusDictionary['Ready'])->get()
+            'Orders' => Order::where('status', self::$StatusDictionary['Accepted'])->orWhere('status', self::$StatusDictionary['Cook'])->orWhere('status', self::$StatusDictionary['Ready'])->orderBy('id', 'desc')->get(),
+            'Statuses' => [
+                'Accepted' => 'Заказ принят в обработку',
+                'Cook' => 'Заказ в процессе приготовления',
+                'Ready' => 'Заказ готов к выдаче',
+                'Issued' => 'Заказ выдан клиенту',
+                'CancelledByREA' => 'Заказ отменён рестораном'
+            ]
         ]);
     }
 
@@ -102,6 +109,14 @@ class OrdersController extends Controller
     }
 
     public function GetMyOrders(Request $request){
-        return Order::select(['id', 'status', 'comment', 'products', 'final_amount', 'created_at'])->where('user_id', $request->user()->id)->get();
+        $ordersList = Order::select(['id', 'status', 'place_name', 'comment', 'products', 'final_amount', 'select_date', 'created_at'])->where('user_id', $request->user()->id)->get();
+        $orders = [];
+        foreach ($ordersList as $order){
+            $orders[] = [
+                'order' => $order,
+                'decline' => $order->status == self::$StatusDictionary['Accepted']
+            ];
+        }
+        return $orders;
     }
 }

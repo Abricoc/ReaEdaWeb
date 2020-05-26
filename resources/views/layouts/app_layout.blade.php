@@ -95,7 +95,7 @@
                 @yield('content')
             </div>
             <div class="page-footer">
-                <p>COPYRIGHT &copy UVC 2020</p>
+                <p>COPYRIGHT &copy 2020</p>
             </div>
         </div>
     </div>
