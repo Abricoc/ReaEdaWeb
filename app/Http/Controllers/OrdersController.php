@@ -73,6 +73,7 @@ class OrdersController extends Controller
         {
             $FinalAmount += $products[$i]['price'];
         }
+        $order->select_date = $request->input('select_date');
         $order->place_name = Product::findorfail($products[0]['product']['id'])->place->place_name;
         $order->final_amount = $FinalAmount;
         $order->products = $products;
@@ -125,14 +126,20 @@ class OrdersController extends Controller
             $orderID = $request->input('orderID');
             $order = Order::findorfail($orderID);
             if($order->user->id == $request->user()->id){
-                $order->status = self::$StatusDictionary['CancelledByClient'];
-                $order->save();
-                if($request->user()->device_id != '') {
-                    $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " отменён");
+                if($order->status == self::$StatusDictionary['Accepted']){
+                    $order->status = self::$StatusDictionary['CancelledByClient'];
+                    $order->save();
+                    if($request->user()->device_id != '') {
+                        $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " отменён");
+                    }
+                    return response([
+                        'status' => 'Заказ отменён'
+                    ], 200);
+                }else{
+                    return response([
+                        'status' => 'Непредвиденная ошибка'
+                    ], 200);
                 }
-                return response([
-                    'status' => 'Заказ отменён'
-                ], 200);
             }else{
                 return response([
                     'status' => 'Непредвиденная ошибка'
