@@ -54,7 +54,8 @@
         "place_name": "Пиццерия",
         "place_photo": "/images/places/94b40548b82a1b5b62192c5970544baf.jpg",
         "place_open": "08:00",
-        "place_close": "18:00"
+        "place_close": "18:00",
+        "operating_mode": true
     }
 ]
 ``` 
@@ -69,7 +70,8 @@
     "place_name": "Пиццерия",
     "place_photo": "/images/places/94b40548b82a1b5b62192c5970544baf.jpg",
     "place_open": "08:00",
-    "place_close": "18:00"
+    "place_close": "18:00",
+    "operating_mode": true
 }
 ```
 Получение всех "Категорий"

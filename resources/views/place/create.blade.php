@@ -30,6 +30,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
+                <div class="form-group">
+                    <label for="operating_mode">График работы:</label><br>
+                    <label><input id="operating_mode" type="radio" checked name="operating_mode" value="five"> 5-ти дневная рабочая неделя</label></br>
+                    <label><input id="operating_mode"  type="radio" name="operating_mode" value="six"> 6-ти дневная рабочая неделя</label>
+                </div>
+                @error('operating_mode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
 
                 <div class="form-group">
                     <label for="place_photo">Фотография:</label>

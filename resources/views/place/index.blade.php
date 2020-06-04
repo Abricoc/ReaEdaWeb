@@ -14,6 +14,7 @@
                         <th>№</th>
                         <th>Название</th>
                         <th>Фотография</th>
+                        <th>Режим работы</th>
                         <th>Время работы ресторана</th>
                         <th>Действия</th>
                     </tr>
@@ -24,6 +25,7 @@
                             <td>{{ $Place->id }}</td>
                             <td>{{ $Place->place_name }}</td>
                             <td><img height="70px" src="{{ $Place->place_photo }}" alt="{{ $Place->place_name }}"></td>
+                            <td>@if($Place->operating_mode) 6-ти дневный  @else 5-ти дневный @endif</td>
                             <td>{{ $Place->place_open }} - {{$Place->place_close}}</td>
                             <td>
                                 <form class="deleteForm" method="post" action="/places/{{ $Place->id }}">

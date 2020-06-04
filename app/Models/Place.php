@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property false|mixed|string place_photo
  * @property mixed place_open
  * @property mixed place_close
+ * @property mixed|string operating_mode
  * @method static findorfail($id)
  * @method static paginate(int $int)
  */
@@ -31,4 +32,8 @@ class Place extends Model
     {
         return substr($value, 0, 5) ;
     }
+
+    protected $casts = [
+        'operating_mode' => 'boolean'
+    ];
 }

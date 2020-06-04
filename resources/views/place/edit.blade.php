@@ -35,6 +35,16 @@
                     <input id="place_photo" accept="image/*" class="form-control" type="file" name="place_photo">
                     <img width="500px" src="{{ $Model->place_photo }}" alt="{{ $Model->place_name }}">
                 </div>
+
+                <div class="form-group">
+                    <label for="operating_mode">График работы:</label><br>
+                    <label><input id="operating_mode" type="radio" @if(!$Model->operating_mode) checked @endif name="operating_mode" value="five"> 5-ти дневная рабочая неделя</label></br>
+                    <label><input id="operating_mode"  type="radio" name="operating_mode" @if($Model->operating_mode) checked @endif value="six"> 6-ти дневная рабочая неделя</label>
+                </div>
+                @error('operating_mode')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
                 @error('place_photo')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

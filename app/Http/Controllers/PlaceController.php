@@ -58,6 +58,15 @@ class PlaceController extends Controller
         $place->place_name = $request->input('place_name');
         $place->place_open = $request->input('place_open');
         $place->place_close = $request->input('place_close');
+        if($request->has('operating_mode')){
+            if($request->input('operating_mode') == 'six'){
+                $place->operating_mode = true;
+            }else{
+                $place->operating_mode = false;
+            }
+        }else {
+            $place->operating_mode = false;
+        }
         $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
         $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);
         $place->place_photo = '/images/places/' . $newFileName;
@@ -104,6 +113,15 @@ class PlaceController extends Controller
         $Model->place_name = $request->input('place_name');
         $Model->place_open = $request->input('place_open');
         $Model->place_close = $request->input('place_close');
+        if($request->has('operating_mode')){
+            if($request->input('operating_mode') == 'six'){
+                $Model->operating_mode = true;
+            }else{
+                $Model->operating_mode = false;
+            }
+        }else {
+            $Model->operating_mode = false;
+        }
         if($request->hasFile('place_photo')){
             $newFileName = self::getRandomFileName(public_path() . '/images/places', $request->file('place_photo')->getClientOriginalExtension());
             $request->file('place_photo')->move(public_path()  . '/images/places/', $newFileName);
