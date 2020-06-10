@@ -3,7 +3,7 @@
 --- 
 ##### Адрес: `/api/register`
 ##### Метод: `POST` 
-##### Параметры: `firstname, email, password, device_id`
+##### Параметры: `firstname, email, password, device_id (необязательный)`
 
 ```
 { 
@@ -27,7 +27,7 @@
 --- 
 ##### Адрес: `/api/login` 
 ##### Метод: `POST` 
-##### Параметры: `email, password, device_id`
+##### Параметры: `email, password, device_id (необязательный)`
 ``` 
 { 
     "data": "", 

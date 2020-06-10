@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPasswords;
+use App\Models\Device;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -42,9 +43,16 @@ class ApiController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->firstname = $request->input('firstname');
         $user->role = 1;
-        $user->device_id = $request->input('device_id');
         $user->save();
-        $token = $user->createToken($request->email)->plainTextToken;
+        $device = Device::where('user_id', $user->id)->where('device_token', $request->input('device_id'))->first();
+        if($device == null && $request->has('device_id'))
+        {
+            $device = new Device;
+            $device->user_id = $user->id;
+            $device->device_token = $request->input('device_id');
+            $device->save();
+        }
+        $token = $user->createToken($request->input('email'))->plainTextToken;
         $errors['firstname'] = '';
         $errors['email'] = '';
         $errors['password'] = '';
@@ -85,7 +93,14 @@ class ApiController extends Controller
         }
         $errors['email'] = '';
         $errors['password'] = '';
-        $user->device_id = $request->input('device_id');
+        $device = Device::where('user_id', $user->id)->where('device_token', $request->input('device_id'))->first();
+        if($device == null && $request->has('device_id'))
+        {
+            $device = new Device;
+            $device->user_id = $user->id;
+            $device->device_token = $request->input('device_id');
+            $device->save();
+        }
         $user->save();
         return response()->json([
             'data' => $user->createToken($request->input('email'))->plainTextToken,

@@ -28,7 +28,7 @@
                             <td>{{ date('d.m.Y H:i', strtotime($order->created_at)) }}</td>
                             <td>{{ date('d.m.Y H:i', strtotime($order->select_date)) }}</td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control order_status">
                                     @foreach($Statuses as $key => $value)
                                         <option @if($value == $order->status) selected @endif value="{{$key}}">{{$value}}</option>
                                     @endforeach
@@ -44,4 +44,29 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            $('.order_status').on({
+                "ready": function (e) {
+                    $(this).attr("readonly",true);
+                },
+                "focus": function (e) {
+                    $(this).data( { choice: $(this).val() } );
+                },
+                "change": function (e) {
+                    if($(this).val() === 'Accepted'){
+                        $(this).val( $(this).data('choice') );
+                        return false;
+                    }
+                    if ( ! confirm( "Вы уверены, что хотите изменить статус заказа?" ) ){
+                        $(this).val( $(this).data('choice') );
+                        return false;
+                    } else {
+                        $(this).attr("readonly",false);
+                        return true;
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

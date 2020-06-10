@@ -78,8 +78,8 @@ class OrdersController extends Controller
         $order->final_amount = $FinalAmount;
         $order->products = $products;
         $order->save();
-        if($request->user()->device_id != '') {
-            $this->SendNotification($request->user()->device_id, "Заказ №" . $order->id . " успешно оформлен!!!");
+        foreach ($request->user()->devices as $device){
+            $this->SendNotification($device->device_token, "Заказ №" . $order->id . " успешно оформлен!!!");
         }
         $request->user()->cart = null;
         $request->user()->save();
