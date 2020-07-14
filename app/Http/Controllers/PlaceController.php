@@ -133,7 +133,9 @@ class PlaceController extends Controller
 
     public function destroy($id)
     {
-        Place::destroy($id);
+        $place = Place::findorfail($id);
+        $place->products()->delete();
+        $place->delete();
         return redirect('/places');
     }
 }

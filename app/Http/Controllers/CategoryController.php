@@ -70,7 +70,9 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        Category::destroy($id);
+        $category = Category::findorfail($id);
+        $category->products()->delete();
+        $category->delete();
         return redirect('/categorys');
     }
 }

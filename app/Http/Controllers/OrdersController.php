@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
+use App\Mail\CheckOut;
+use App\Mail\ResetPasswords;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrdersController extends Controller
 {
@@ -79,10 +84,11 @@ class OrdersController extends Controller
         $order->products = $products;
         $order->save();
         foreach ($request->user()->devices as $device){
-            $this->SendNotification($device->device_token, "Заказ №" . $order->id . " успешно оформлен!!!");
+            $this->SendNotification($device->device_token, "Заказ №" . $order->id . " успешно оформлен!");
         }
         $request->user()->cart = null;
         $request->user()->save();
+        Mail::to("n.s.mitasov@mpt.ru")->send(new CheckOut($order));
         return response([
             'status' => "Success"
         ], 200);
@@ -97,20 +103,29 @@ class OrdersController extends Controller
                 'Ready' => 'Заказ готов к выдаче',
                 'Issued' => 'Заказ выдан клиенту',
                 'CancelledByREA' => 'Заказ отменён рестораном'
-            ]
+            ],
+            'lastId' => Order::where('status', self::$StatusDictionary['Accepted'])->orWhere('status', self::$StatusDictionary['Cook'])->orWhere('status', self::$StatusDictionary['Ready'])->orderBy('id', 'desc')->first()->id
         ]);
     }
 
     public function CompleteOrders(){
-        return view('orders.complete');
+        return view('orders.complete',[
+            'Orders' => Order::where('status', self::$StatusDictionary['Issued'])->orWhere('status', self::$StatusDictionary['CancelledByClient'])->orWhere('status', self::$StatusDictionary['CancelledByREA'])->orderBy('id', 'desc')->get(),
+        ]);
     }
 
     public function ChangeStatus(Request $request){
-
+        $order = Order::findorfail($request->input('orderId'));
+        $order->status = self::$StatusDictionary[$request->input('newStatus')];
+        $order->save();
+        foreach ($order->user->devices as $device){
+            $this->SendNotification($device->device_token, "Заказ №" . $order->id . " статус изменён на " . self::$StatusDictionary[$request->input('newStatus')]);
+        }
+        return back();
     }
 
     public function GetMyOrders(Request $request){
-        $ordersList = Order::select(['id', 'status', 'place_name', 'comment', 'products', 'final_amount', 'select_date', 'created_at'])->where('user_id', $request->user()->id)->get();
+        $ordersList = Order::select(['id', 'status', 'place_name', 'comment', 'products', 'final_amount', 'select_date', 'created_at'])->where('user_id', $request->user()->id)->orderBy('id', 'desc')->get();
         $orders = [];
         foreach ($ordersList as $order){
             $orders[] = [
@@ -150,5 +165,31 @@ class OrdersController extends Controller
                 'status' => 'Непредвиденная ошибка 3'
             ], 200);
         }
+    }
+
+    public function show(Request $request, $id){
+        $order = Order::findorfail($id);
+        return view('orders.show', [
+            'order' => $order
+        ]);
+    }
+
+    public function hasUpdate(Request $request){
+        $id = $request->input('lastId');
+        $lastId = Order::where('status', self::$StatusDictionary['Accepted'])->orWhere('status', self::$StatusDictionary['Cook'])->orWhere('status', self::$StatusDictionary['Ready'])->orderBy('id', 'desc')->first()->id;
+        if($id < $lastId) {
+            return [
+                'status' => 'Update'
+            ];
+        }
+        else{
+            return [
+                'status' => 'NotUpdate'
+            ];
+        }
+    }
+
+    public function ExportToExcel(Request $request){
+        return Excel::download(new OrdersExport(), 'Заказы на ' . date('d.m.Y H:i:s') . '.xlsx');
     }
 }

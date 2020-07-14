@@ -1,31 +1,31 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('api')->post('/register', 'Auth\ApiController@register');
-Route::middleware('api')->post('/login', 'Auth\ApiController@token');
-Route::middleware('auth:sanctum')->get('/logout', 'Auth\ApiController@logout');
-Route::middleware('api')->get('/categorys', 'CategoryController@index');
-Route::middleware('api')->get('/places', 'PlaceController@index');
-Route::middleware('api')->get('/places/{id}', 'PlaceController@show');
-Route::middleware('auth:sanctum')->get('/profile', 'UsersController@profile');
-Route::middleware('api')->get('/singleProduct/{id}', function($id){
+Route::middleware(['api', 'throttle:500,1'])->post('/register', 'Auth\ApiController@register');
+Route::middleware(['api', 'throttle:500,1'])->post('/login', 'Auth\ApiController@token');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/logout', 'Auth\ApiController@logout');
+Route::middleware(['api', 'throttle:500,1'])->get('/categorys', 'CategoryController@index');
+Route::middleware(['api', 'throttle:500,1'])->get('/places', 'PlaceController@index');
+Route::middleware(['api', 'throttle:500,1'])->get('/places/{id}', 'PlaceController@show');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/profile', 'UsersController@profile');
+Route::middleware(['api', 'throttle:500,1'])->get('/singleProduct/{id}', function($id){
     return App\Models\Product::with(["category", "place"])->find($id);
 });
-Route::middleware('api')->get('/products/{placeId}', function($placeId){
+Route::middleware(['api', 'throttle:500,1'])->get('/products/{placeId}', function($placeId){
     return App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->get();
 });
-Route::middleware('api')->get('/products/{placeId}/{categoryId}', function($placeId, $categoryId){
+Route::middleware(['api', 'throttle:500,1'])->get('/products/{placeId}/{categoryId}', function($placeId, $categoryId){
     return App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->where('category_id', $categoryId)->get();
 });
-Route::middleware('auth:sanctum')->post('/cart', 'CartController@AddProductToCart');
-Route::middleware('auth:sanctum')->delete('/cart', 'CartController@DeleteProductFromCart');
-Route::middleware('auth:sanctum')->get('/cart', "CartController@GetCart");
-Route::middleware('auth:sanctum')->post('/clearCart', 'CartController@ClearCart');
-Route::post('/resetPassword', 'Auth\ApiController@ResetPassword');
-Route::middleware('auth:sanctum')->post('/changeName', 'Auth\ApiController@ChangeName');
-Route::middleware('auth:sanctum')->post('/changePassword', 'Auth\ApiController@ChangePassword');
-Route::middleware('auth:sanctum')->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
-Route::middleware('auth:sanctum')->post('/checkout', 'OrdersController@CheckOut');
-Route::middleware('auth:sanctum')->get('/profile', 'Auth\ApiController@Profile');
-Route::middleware('auth:sanctum')->get('/orders', 'OrdersController@GetMyOrders');
-Route::middleware('auth:sanctum')->delete('/orders', 'OrdersController@DeclineOrder');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/cart', 'CartController@AddProductToCart');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->delete('/cart', 'CartController@DeleteProductFromCart');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/cart', "CartController@GetCart");
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/clearCart', 'CartController@ClearCart');
+Route::middleware(['api', 'throttle:500,1'])->post('/resetPassword', 'Auth\ApiController@ResetPassword');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/changeName', 'Auth\ApiController@ChangeName');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/changePassword', 'Auth\ApiController@ChangePassword');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/changeEmail', 'Auth\ApiController@ChangeEmail');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/checkout', 'OrdersController@CheckOut');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/profile', 'Auth\ApiController@Profile');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/orders', 'OrdersController@GetMyOrders');
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->delete('/orders', 'OrdersController@DeclineOrder');

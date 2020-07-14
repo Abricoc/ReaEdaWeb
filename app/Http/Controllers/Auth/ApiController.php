@@ -93,13 +93,15 @@ class ApiController extends Controller
         }
         $errors['email'] = '';
         $errors['password'] = '';
-        $device = Device::where('user_id', $user->id)->where('device_token', $request->input('device_id'))->first();
-        if($device == null && $request->has('device_id'))
-        {
-            $device = new Device;
-            $device->user_id = $user->id;
-            $device->device_token = $request->input('device_id');
-            $device->save();
+        if ($request->has('device_id')){
+            $device = Device::where('user_id', $user->id)->where('device_token', $request->input('device_id'))->first();
+            if($device == null && $request->has('device_id'))
+            {
+                $device = new Device;
+                $device->user_id = $user->id;
+                $device->device_token = $request->input('device_id');
+                $device->save();
+            }
         }
         $user->save();
         return response()->json([

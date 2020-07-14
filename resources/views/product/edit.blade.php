@@ -62,11 +62,12 @@
 
                 <div class="form-group">
                     <label for="photo">Фотография:</label>
-                    <input id="photo" accept="image/*" required class="form-control" type="file" name="photo">
+                    <input id="photo" accept="image/*" class="form-control" type="file" name="photo">
                 </div>
                 @error('photo')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                <img src="{{ $Model->photo }}" alt="{{ $Model->photo }}"><br><br>
                 <button type="submit" class="btn btn-success m-b-sm">Изменить</button>
             </form>
         </div>

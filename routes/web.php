@@ -39,11 +39,10 @@ Route::middleware('auth')->group(function(){
 
 //orders routing
     Route::get('/orders', 'OrdersController@Orders');
-    Route::get('/products/create', 'ProductController@create')->name('CreateProduct');
-    Route::post('/products/create', 'ProductController@store');
-    Route::get('/products/{id}', 'ProductController@show');
-    Route::delete('/products/{id}', 'ProductController@destroy');
-    Route::get('/products/edit/{id}', 'ProductController@edit');
-    Route::put('/products/edit/{id}', 'ProductController@update');
+    Route::get('/completeOrders', 'OrdersController@CompleteOrders');
+    Route::post('/changeStatus', 'OrdersController@ChangeStatus');
+    Route::get('/orders/{id}', 'OrdersController@show');
+    Route::post('/hasUpdate', 'OrdersController@hasUpdate');
+    Route::post('/export', 'OrdersController@ExportToExcel');
 //product end routing
 });
