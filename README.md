@@ -438,7 +438,8 @@
 ##### Метод: `POST` 
 ``` 
 {
-    "status": "Success"
+    "orderId": "8647d61d-5cff-72bc-8420-cdef5e38cb3f",
+    "formUrl": "https://3dsec.sberbank.ru/payment/merchants/sbersafe/mobile_payment_ru.html?mdOrder=8647d61d-5cff-72bc-8420-cdef5e38cb3f"
 }
 ```
 

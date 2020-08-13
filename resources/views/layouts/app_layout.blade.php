@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ReaEda - @yield('title')</title>
+    <title>ReuEda - @yield('title')</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <div class="page-container">
     <div class="page-sidebar">
         <a class="logo-box" href="/">
-            <span>ReaEda</span>
+            <span>ReuEda</span>
             <i class="icon-close" id="sidebar-toggle-button-close"></i>
         </a>
         <div class="page-sidebar-inner">

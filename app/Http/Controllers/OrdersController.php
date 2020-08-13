@@ -88,10 +88,13 @@ class OrdersController extends Controller
         }
         $request->user()->cart = null;
         $request->user()->save();
+        $FinalAmount = $FinalAmount * 100;
+        $orderNumber = "Тестовый%20заказ%20№" . $order->id;
+        $info = file_get_contents("https://3dsec.sberbank.ru/payment/rest/register.do?userName=rea_1-api&password=rea_1&amount=$FinalAmount&returnUrl=https://eda.ucmpt.ru&orderNumber=$orderNumber&pageView=MOBILE&features=FORCE_FULL_TDS");
+        $info = json_decode($info, true);
+        $order->sberId =  $info['orderId'];
         Mail::to("n.s.mitasov@mpt.ru")->send(new CheckOut($order));
-        return response([
-            'status' => "Success"
-        ], 200);
+        return $info;
     }
 
     public function Orders(){

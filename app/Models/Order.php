@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|mixed final_amount
  * @property int|mixed place_name
  * @property mixed select_date
+ * @property mixed sberId
  * @method static findorfail($id)
  */
 class Order extends Model
