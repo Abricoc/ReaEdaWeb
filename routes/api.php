@@ -18,6 +18,9 @@ Route::middleware(['api', 'throttle:500,1'])->get('/products/{placeId}/{category
     return App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->where('category_id', $categoryId)->get();
 });
 Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/cart', 'CartController@AddProductToCart');
+
+Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/changecount', 'CartController@ChangeProductCountFromCart');
+
 Route::middleware(['auth:sanctum', 'throttle:500,1'])->delete('/cart', 'CartController@DeleteProductFromCart');
 Route::middleware(['auth:sanctum', 'throttle:500,1'])->get('/cart', "CartController@GetCart");
 Route::middleware(['auth:sanctum', 'throttle:500,1'])->post('/clearCart', 'CartController@ClearCart');

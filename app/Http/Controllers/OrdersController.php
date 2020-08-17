@@ -82,7 +82,6 @@ class OrdersController extends Controller
         $order->place_name = Product::findorfail($products[0]['product']['id'])->place->place_name;
         $order->final_amount = $FinalAmount;
         $order->products = $products;
-        $order->save();
         foreach ($request->user()->devices as $device){
             $this->SendNotification($device->device_token, "Заказ №" . $order->id . " успешно оформлен!");
         }
@@ -92,7 +91,8 @@ class OrdersController extends Controller
         $orderNumber = "Тестовый%20заказ%20№" . $order->id;
         $info = file_get_contents("https://3dsec.sberbank.ru/payment/rest/register.do?userName=rea_1-api&password=rea_1&amount=$FinalAmount&returnUrl=https://eda.ucmpt.ru&orderNumber=$orderNumber&pageView=MOBILE&features=FORCE_FULL_TDS");
         $info = json_decode($info, true);
-        $order->sberId =  $info['orderId'];
+        $order->sberId = $info['orderId'];
+        $order->save();
         Mail::to("n.s.mitasov@mpt.ru")->send(new CheckOut($order));
         return $info;
     }

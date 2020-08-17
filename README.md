@@ -287,6 +287,50 @@
 }
 ```
 
+Изменение количества товара в "Корзине"
+--- 
+##### Адрес: `/api/changecount`
+##### Заголовки: 
+- Authorization: Bearer {token}
+##### Параметры:
+- productId - идентификатор продукта
+- count - количество такого товара (необязательный по умолчанию равен 1)
+##### Метод: `POST` 
+``` 
+{
+    "Items": [
+        {
+            "product": {
+                "id": 4,
+                "name_product": "Мясо по-французки",
+                "price": "170",
+                "text": "<p>Мясо по-французки</p>",
+                "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
+                "dish_of_the_day": 0
+            },
+            "count": 2,
+            "price": 340
+        },
+        {
+            "product": {
+                "id": 3,
+                "name_product": "Мясо по-французски",
+                "price": "170",
+                "text": "<p><strong>Мясо по-французски</strong></p>",
+                "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+                "dish_of_the_day": 0
+            },
+            "count": 1,
+            "price": 170
+        }
+    ],
+    "TotalNumber": 3,
+    "FinalAmount": 510,
+    "CurrentCount": 1,
+    "Place": 1
+}
+```
+
 Удаление товара из "Корзины"
 --- 
 ##### Адрес: `/api/cart`
