@@ -46,3 +46,6 @@ Route::middleware('auth')->group(function(){
     Route::post('/export', 'OrdersController@ExportToExcel');
 //product end routing
 });
+
+Route::get('/success', 'AcquiringController@success');
+Route::get('/fail', 'AcquiringController@fail');

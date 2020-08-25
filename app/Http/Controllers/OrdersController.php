@@ -82,18 +82,14 @@ class OrdersController extends Controller
         $order->place_name = Product::findorfail($products[0]['product']['id'])->place->place_name;
         $order->final_amount = $FinalAmount;
         $order->products = $products;
-        foreach ($request->user()->devices as $device){
-            $this->SendNotification($device->device_token, "Заказ №" . $order->id . " успешно оформлен!");
-        }
-        $request->user()->cart = null;
-        $request->user()->save();
+        $order->payment_status = 'Оплата ещё не произведена';
         $FinalAmount = $FinalAmount * 100;
         $orderNumber = "Тестовый%20заказ%20№" . $order->id;
         $info = file_get_contents("https://3dsec.sberbank.ru/payment/rest/register.do?userName=rea_1-api&password=rea_1&amount=$FinalAmount&returnUrl=https://eda.ucmpt.ru&orderNumber=$orderNumber&pageView=MOBILE&features=FORCE_FULL_TDS");
         $info = json_decode($info, true);
         $order->sberId = $info['orderId'];
         $order->save();
-        Mail::to("n.s.mitasov@mpt.ru")->send(new CheckOut($order));
+        Mail::to("eda@rea.ru")->send(new CheckOut($order));
         return $info;
     }
 
@@ -133,7 +129,7 @@ class OrdersController extends Controller
         foreach ($ordersList as $order){
             $orders[] = [
                 'order' => $order,
-                'decline' => $order->status == self::$StatusDictionary['Accepted']
+                'decline' => ($order->status == self::$StatusDictionary['Accepted']) && (date("dmY") == date('dmY', strtotime($order->created_at)))
             ];
         }
         return $orders;
