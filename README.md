@@ -100,40 +100,104 @@
 ##### Параметры: placeId - ID столовой
 ##### Метод: `GET` 
 ``` 
-[
-    {
-        "id": 3,
-        "name_product": "Мясо по-французски",
-        "price": "170",
-        "text": "<p><strong>Мясо по-французски</strong></p>",
-        "photo": "/storage/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
-        "category": {
+{
+    "products": [
+        {
+            "id": 3,
+            "name_product": "Мясо по-французски",
+            "price": "170",
+            "text": "<p>Мясо по-французски</p>",
+            "photo": "/images/products/Z2E32a0b8FqdwHRlbH0Ol7FmmpqTHjDLqsQv4w3G.jpeg",
+            "dish_of_the_day": true,
+            "category": {
+                "id": 1,
+                "category_name": "Мясные блюда"
+            },
+            "place": {
+                "id": 2,
+                "place_name": "Пиццерия",
+                "place_photo": "/images/places/4f65556e994decfcacde3b8393257cde.jpg",
+                "place_open": "08:00",
+                "place_close": "21:00",
+                "operating_mode": false
+            }
+        },
+        {
+            "id": 7,
+            "name_product": "Салат \"Цезарь\"",
+            "price": "80",
+            "text": "<p>Цезарь\r\n</p>",
+            "photo": "/images/products/1086633911.jpg",
+            "dish_of_the_day": true,
+            "category": {
+                "id": 3,
+                "category_name": "Салаты"
+            },
+            "place": {
+                "id": 2,
+                "place_name": "Пиццерия",
+                "place_photo": "/images/places/4f65556e994decfcacde3b8393257cde.jpg",
+                "place_open": "08:00",
+                "place_close": "21:00",
+                "operating_mode": false
+            }
+        },
+        {
+            "id": 8,
+            "name_product": "Пирог с вишней",
+            "price": "500",
+            "text": "Состав: тесто слоеное дрожжевое, вишня, сахар.",
+            "photo": "/images/products/eadc4e9eb829d4a73b2a210f6b9e1aa0.jpg",
+            "dish_of_the_day": false,
+            "category": {
+                "id": 6,
+                "category_name": "Пироги"
+            },
+            "place": {
+                "id": 2,
+                "place_name": "Пиццерия",
+                "place_photo": "/images/places/4f65556e994decfcacde3b8393257cde.jpg",
+                "place_open": "08:00",
+                "place_close": "21:00",
+                "operating_mode": false
+            }
+        },
+        {
+            "id": 9,
+            "name_product": "Котлета по-киевски",
+            "price": "179",
+            "text": "Вкусные традиционные котлеты из куриного филе с нежной начинкой.\r\nСостав: куриная грудка, масло растительное, панировка, яйцо куриное, масло сливочное, специи.",
+            "photo": "/images/products/eaeb1a66f5b8636623bb266d4a5eabf1.jpg",
+            "dish_of_the_day": false,
+            "category": {
+                "id": 1,
+                "category_name": "Мясные блюда"
+            },
+            "place": {
+                "id": 2,
+                "place_name": "Пиццерия",
+                "place_photo": "/images/places/4f65556e994decfcacde3b8393257cde.jpg",
+                "place_open": "08:00",
+                "place_close": "21:00",
+                "operating_mode": false
+            }
+        }
+    ],
+    "categorys": [
+        {
             "id": 1,
             "category_name": "Мясные блюда"
         },
-        "place": {
-            "id": 2,
-            "place_name": "Нахимовский проспект, 21",
-            "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
-        }
-    },
-    {
-        "id": 4,
-        "name_product": "Мясо по-французки",
-        "price": "170",
-        "text": "<p>Мясо по-французки</p>",
-        "photo": "/storage/products/wGYUh2mwqY0kJYBrwcFTHyRqdTjzdbYfAY0gyDSz.jpeg",
-        "category": {
-            "id": 1,
-            "category_name": "Мясные блюда"
+        {
+            "id": 3,
+            "category_name": "Салаты"
         },
-        "place": {
-            "id": 2,
-            "place_name": "Нахимовский проспект, 21",
-            "place_photo": "/storage/places/cpJHbuOZKWEoXYzsKy71aSXfEFoPNkfR3pIhBEZU.jpeg"
+        {
+            "id": 6,
+            "category_name": "Пироги"
         }
-    }
-]
+    ]
+}
 ```
 Получение всех "Продуктов" конкретной столовой и конкретной категории
 --- 

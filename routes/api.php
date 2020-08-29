@@ -12,7 +12,10 @@ Route::middleware(['api', 'throttle:500,1'])->get('/singleProduct/{id}', functio
     return App\Models\Product::with(["category", "place"])->find($id);
 });
 Route::middleware(['api', 'throttle:500,1'])->get('/products/{placeId}', function($placeId){
-    return App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->get();
+    return [
+        'products' => App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->get(),
+        'categorys' => \Illuminate\Support\Facades\DB::select("SELECT id, category_name FROM categorys WHERE (SELECT COUNT(*) FROM products WHERE products.place_id = $placeId AND products.category_id = categorys.id) > 0")
+        ];
 });
 Route::middleware(['api', 'throttle:500,1'])->get('/products/{placeId}/{categoryId}', function($placeId, $categoryId){
     return App\Models\Product::with(["category", "place"])->where('place_id', $placeId)->where('category_id', $categoryId)->get();
