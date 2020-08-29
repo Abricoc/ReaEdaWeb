@@ -12,8 +12,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        if(\Illuminate\Support\Facades\Request::is('api/*'))
-            return Category::all();
         return view('category.index', [
             'Categorys' => Category::all()
         ]);
